@@ -2,11 +2,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wordster.Views.MenuPage"
-             Shell.NavBarIsVisible="False">
-    <VerticalStackLayout>
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#e3edf7">
+    <VerticalStackLayout VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Spacing="10">
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+               Text="Wordster"
+               TextColor="#FF8D00"
+               FontSize="50"
+               FontFamily="ComicShark"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" />
+        <NeoButton BackgroundColor="#e3edf7"
+                   HorizontalOptions="Center"
+                   Elevation=".25"
+                   Margin="80,0"
+               CornerRadius="20"
+                   HeightRequest="50">
+
+            <Grid>
+                <Label Text="Quick game"
+                       TextColor="Black"
+                       FontFamily="ComicShark"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </Grid>
+
+        </NeoButton>
     </VerticalStackLayout>
 </ContentPage>
