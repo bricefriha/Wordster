@@ -17,6 +17,8 @@ namespace Wordster
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("ComicShark.otf", "ComicShark");
+                    fonts.AddFont("SonicComics.ttf", "SonicComics");
+                    fonts.AddFont("MouseMemoirs-Regular.ttf", "MouseMemoirs-Regular");
                 });
 
 #if DEBUG
