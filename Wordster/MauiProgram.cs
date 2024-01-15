@@ -1,4 +1,5 @@
-﻿using Maui.NeoControls;
+﻿
+using Maui.NeoControls;
 using Microsoft.Extensions.Logging;
 
 namespace Wordster
@@ -15,6 +16,7 @@ namespace Wordster
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("ComicShark.otf", "ComicShark");
                 });
 
 #if DEBUG
