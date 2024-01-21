@@ -22,7 +22,7 @@
         <Grid ColumnDefinitions="*,*,*,*,*,*,*,*"
               HorizontalOptions="Center" >
 
-            <NeoButton BackgroundColor="#e3edf7"
+            <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
                        HorizontalOptions="Center"
                        Elevation=".25"
                        CornerRadius="{StaticResource TileRadius}"
@@ -40,31 +40,12 @@
 
             </NeoButton>
 
-            <NeoButton BackgroundColor="#8fce00"
+            <NeoButton BackgroundColor="{StaticResource AlmostRightButtonBrush}"
                        HorizontalOptions="Center"
                        Elevation=".25"
                        CornerRadius="{StaticResource TileRadius}"
                        HeightRequest="{StaticResource TitleTileSize}"
                        Grid.Column="1"
-                       WidthRequest="{StaticResource TitleTileSize}">
-
-                <Grid>
-                    <Label Text="O"
-                           TextColor="Black"
-                           FontSize="{StaticResource TitleFontSize}"
-                           FontFamily="MouseMemoirs-Regular"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center"/>
-                </Grid>
-
-            </NeoButton>
-
-            <NeoButton BackgroundColor="#8fce00"
-                       HorizontalOptions="Center"
-                       Elevation=".25"
-                       CornerRadius="{StaticResource TileRadius}"
-                       HeightRequest="{StaticResource TitleTileSize}"
-                       Grid.Column="2"
                        WidthRequest="{StaticResource TitleTileSize}">
 
                 <Grid>
@@ -78,7 +59,26 @@
 
             </NeoButton>
 
-            <NeoButton BackgroundColor="#e3edf7"
+            <NeoButton BackgroundColor="{StaticResource NailedButtonBrush}"
+                       HorizontalOptions="Center"
+                       Elevation=".25"
+                       CornerRadius="{StaticResource TileRadius}"
+                       HeightRequest="{StaticResource TitleTileSize}"
+                       Grid.Column="2"
+                       WidthRequest="{StaticResource TitleTileSize}">
+
+                <Grid>
+                    <Label Text="O"
+                           TextColor="Black"
+                           FontSize="{StaticResource TitleFontSize}"
+                           FontFamily="MouseMemoirs-Regular"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                </Grid>
+
+            </NeoButton>
+
+            <NeoButton BackgroundColor="{StaticResource AlmostRightButtonBrush}"
                        HorizontalOptions="Center"
                        Elevation=".25"
                        CornerRadius="{StaticResource TileRadius}"
@@ -87,7 +87,7 @@
                        WidthRequest="{StaticResource TitleTileSize}">
 
                 <Grid>
-                    <Label Text="D"
+                    <Label Text="P"
                            TextColor="Black"
                            FontSize="{StaticResource TitleFontSize}"
                            FontFamily="MouseMemoirs-Regular"
@@ -97,50 +97,31 @@
 
             </NeoButton>
 
-            <NeoButton BackgroundColor="#e3edf7"
+            <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                       HorizontalOptions="Center"
+                       Elevation=".25"
+                       CornerRadius="{StaticResource TileRadius}"
+                       HeightRequest="{StaticResource TitleTileSize}"
+                       Grid.Column="3"
+                       WidthRequest="{StaticResource TitleTileSize}">
+
+                <Grid>
+                    <Label Text="P"
+                           TextColor="Black"
+                           FontSize="{StaticResource TitleFontSize}"
+                           FontFamily="MouseMemoirs-Regular"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                </Grid>
+
+            </NeoButton>
+
+            <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
                        HorizontalOptions="Center"
                        Elevation=".25"
                        CornerRadius="{StaticResource TileRadius}"
                        HeightRequest="{StaticResource TitleTileSize}"
                        Grid.Column="4"
-                       WidthRequest="{StaticResource TitleTileSize}">
-
-                <Grid>
-                    <Label Text="S"
-                           TextColor="Black"
-                           FontSize="{StaticResource TitleFontSize}"
-                           FontFamily="MouseMemoirs-Regular"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center"/>
-                </Grid>
-
-            </NeoButton>
-
-            <NeoButton BackgroundColor="#2986cc"
-                       HorizontalOptions="Center"
-                       Elevation=".25"
-                       CornerRadius="{StaticResource TileRadius}"
-                       HeightRequest="{StaticResource TitleTileSize}"
-                       Grid.Column="5"
-                       WidthRequest="{StaticResource TitleTileSize}">
-
-                <Grid>
-                    <Label Text="T"
-                           TextColor="Black"
-                           FontSize="{StaticResource TitleFontSize}"
-                           FontFamily="MouseMemoirs-Regular"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center"/>
-                </Grid>
-
-            </NeoButton>
-
-            <NeoButton BackgroundColor="#e3edf7"
-                       HorizontalOptions="Center"
-                       Elevation=".25"
-                       CornerRadius="{StaticResource TileRadius}"
-                       HeightRequest="{StaticResource TitleTileSize}"
-                       Grid.Column="6"
                        WidthRequest="{StaticResource TitleTileSize}">
 
                 <Grid>
@@ -154,12 +135,12 @@
 
             </NeoButton>
 
-            <NeoButton BackgroundColor="#e3edf7"
+            <NeoButton BackgroundColor="{StaticResource AlmostRightButtonBrush}"
                        HorizontalOptions="Center"
                        Elevation=".25"
                        CornerRadius="{StaticResource TileRadius}"
                        HeightRequest="{StaticResource TitleTileSize}"
-                       Grid.Column="7"
+                       Grid.Column="5"
                        WidthRequest="{StaticResource TitleTileSize}">
 
                 <Grid>
