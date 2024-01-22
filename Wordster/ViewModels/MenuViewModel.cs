@@ -23,7 +23,7 @@ namespace Wordster.ViewModels
 				switch (pageRoute)
 				{
 					case "Game":
-                        //await _menu.Navigation.PushAsync(new GamePage ());
+
                         await Shell.Current.GoToAsync("gamePage");
                         break;
 					default:
