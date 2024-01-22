@@ -44,6 +44,7 @@
     
     <!--In game-->
     <Color x:Key="DefaultButtonBrush">#e3edf7</Color>
+    <Color x:Key="DarkButtonBrush">#9EA5AC</Color>
     <Color x:Key="AlmostRightButtonBrush">#A7CBF6</Color>
     <Color x:Key="NailedButtonBrush">#8fce00</Color>
 
