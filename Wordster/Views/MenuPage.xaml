@@ -158,6 +158,8 @@
                    HorizontalOptions="Center"
                    Elevation=".25"
                    Margin="80,0"
+                   Command="{Binding NavCommand}"
+                   CommandParameter="Game"
                    CornerRadius="20"
                    HeightRequest="50">
 
