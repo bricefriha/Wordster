@@ -1,223 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Wordster.ViewModels"
+             xmlns:models="clr-namespace:Wordster.Models"
              x:Class="Wordster.Views.GamePage"
+             x:DataType="vm:GameViewModel"
              Title="GamePage"
-             BackgroundColor="{StaticResource DefaultButtonBrush}">
+             BackgroundColor="{StaticResource DefaultButtonBrush}"
+             >
     <Grid RowDefinitions="auto, *">
         <!-- Slots -->
         <VerticalStackLayout HorizontalOptions="Center"
                              VerticalOptions="CenterAndExpand"
                              Grid.Row="0"
-                             Margin="0,20">
-            <HorizontalStackLayout>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
+                             Margin="0,20"
+                             BindableLayout.ItemsSource="{Binding Slots}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="models:Slot">
 
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
+                    <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Letters}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
 
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
+                                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
+                                    Style="{StaticResource TileSlot}"
+                                    >
 
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
+                                    <Grid>
+                                        <Label Text="{Binding .}"
+                                        Style="{StaticResource TileText}"/>
+                                    </Grid>
 
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                   Style="{StaticResource TileSlot}"
-                   >
-
-                    <Grid>
-                        <Label Text=""
-                       Style="{StaticResource TileText}"/>
-                    </Grid>
-
-                </NeoButton>
-            </HorizontalStackLayout>
+                                </NeoButton>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
         </VerticalStackLayout>
     </Grid>
     
