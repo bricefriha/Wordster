@@ -67,13 +67,7 @@ namespace Wordster.ViewModels
 
             _addLetterCommand = new Command<string>((character) =>
             {
-                ObservableCollection<Letter> letters = Slots[_currentLine].Letters;
-                int index = letters.IndexOf(letters.FirstOrDefault(l => string.IsNullOrEmpty(l.Value)));
-
-                if (index == -1)
-                    return;
-
-                Slots[_currentLine].Letters[index].Value = character;
+                AddLetter(character);
             });
 
             _removeLetterCommand = new Command<string>((pos) =>
@@ -81,6 +75,21 @@ namespace Wordster.ViewModels
                 RemoveLetter(Convert.ToInt16(pos));
             });
         }
+        /// <summary>
+        /// Add a letter at the end of the current row
+        /// </summary>
+        /// <param name="letter">Letter to add</param>
+        private void AddLetter(string letter)
+        {
+            ObservableCollection<Letter> letters = Slots[_currentLine].Letters;
+            int index = letters.IndexOf(letters.FirstOrDefault(l => string.IsNullOrEmpty(l.Value)));
+
+            if (index == -1)
+                return;
+
+            Slots[_currentLine].Letters[index].Value = letter;
+        }
+
         /// <summary>
         /// Remove a letter from the current line
         /// </summary>
