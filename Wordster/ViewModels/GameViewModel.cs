@@ -54,14 +54,13 @@ namespace Wordster.ViewModels
 
             _addLetterCommand = new Command<string>((character) =>
             {
-                //string letter = Slots[_currentLine].Letters.FirstOrDefault(l => string.IsNullOrEmpty(l));
                 ObservableCollection<string> letters = Slots[_currentLine].Letters;
                 int index = letters.IndexOf(letters.FirstOrDefault(l => string.IsNullOrEmpty(l)));
 
+                if (index == -1)
+                    return;
 
                 Slots[_currentLine].Letters[index] = character;
-                //if (letter != null)
-                //    Slots[_currentLine].Letters[index] = character;
             });
         }
     }
