@@ -78,45 +78,52 @@ namespace Wordster.ViewModels
 
             _removeLetterCommand = new Command<string>((pos) =>
             {
-                ObservableCollection<Letter> letters = Slots[_currentLine].Letters;
-                int index = letters.IndexOf(letters.LastOrDefault(l => !string.IsNullOrEmpty(l.Value)));
-
-                int v = Convert.ToInt16(pos);
-                bool isRegular = v == -1;
-                if (isRegular)
-                    v = index;
-
-                if (!isRegular && !string.IsNullOrEmpty(letters[v + 1].Value))
-                {
-                    int nextSlotsCount = characterCountMax - v;
-
-                    for (int i = v; i < characterCountMax; i++)
-                    {
-                        int nextIndex = i + 1;
-                        Letter letter = nextIndex > letters.Count -1  || nextSlotsCount < i? new Letter
-                        {
-                            Index = i,
-                            Value = ""
-                        }:
-                        new Letter
-                        {
-                            Index = i,
-                            Value = letters[nextIndex].Value
-                        };
-                        Slots[_currentLine].Letters[i] = letter;
-                    }
-                }
-                else
-                {
-
-
-                    Slots[_currentLine].Letters[v] = new Letter
-                    {
-                        Index = v,
-                        Value = ""
-                    };
-                }
+                RemoveLetter(Convert.ToInt16(pos));
             });
+        }
+        /// <summary>
+        /// Remove a letter from the current line
+        /// </summary>
+        /// <param name="pos">position of the leter to delete. (-1 to remove the last letter)</param>
+        private void RemoveLetter(int pos)
+        {
+            ObservableCollection<Letter> letters = Slots[_currentLine].Letters;
+            int index = letters.IndexOf(letters.LastOrDefault(l => !string.IsNullOrEmpty(l.Value)));
+
+            bool isRegular = pos == -1;
+            if (isRegular)
+                pos = index;
+
+            if (!isRegular && !string.IsNullOrEmpty(letters[pos + 1].Value))
+            {
+                int nextSlotsCount = characterCountMax - pos;
+
+                for (int i = pos; i < characterCountMax; i++)
+                {
+                    int nextIndex = i + 1;
+                    Letter letter = nextIndex > letters.Count - 1 || nextSlotsCount < i ? new Letter
+                    {
+                        Index = i,
+                        Value = ""
+                    } :
+                    new Letter
+                    {
+                        Index = i,
+                        Value = letters[nextIndex].Value
+                    };
+                    Slots[_currentLine].Letters[i] = letter;
+                }
+            }
+            else
+            {
+
+
+                Slots[_currentLine].Letters[pos] = new Letter
+                {
+                    Index = pos,
+                    Value = ""
+                };
+            }
         }
     }
 }
