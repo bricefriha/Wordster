@@ -255,6 +255,8 @@
             <!-- line 3-->
             <HorizontalStackLayout HorizontalOptions="Center">
                 <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
+                           Command="{Binding RemoveLetterCommand}"
+                           CommandParameter="-1"
                            Style="{StaticResource ActionGameButton}">
                     <Grid>
                         <Label Text="Back"

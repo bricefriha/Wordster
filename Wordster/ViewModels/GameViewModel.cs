@@ -34,6 +34,15 @@ namespace Wordster.ViewModels
                 return _addLetterCommand; 
             }
         }
+        private Command<string> _removeLetterCommand;
+
+        public Command<string> RemoveLetterCommand
+        {
+            get 
+            { 
+                return _removeLetterCommand; 
+            }
+        }
 
 
         public GameViewModel()
@@ -61,6 +70,18 @@ namespace Wordster.ViewModels
                     return;
 
                 Slots[_currentLine].Letters[index] = character;
+            });
+
+            _removeLetterCommand = new Command<string>((pos) =>
+            {
+                ObservableCollection<string> letters = Slots[_currentLine].Letters;
+                int index = letters.IndexOf(letters.LastOrDefault(l => !string.IsNullOrEmpty(l)));
+
+                int v = Convert.ToInt16(pos);
+                if (v == -1)
+                    v = index;
+
+                Slots[_currentLine].Letters[v] = string.Empty;
             });
         }
     }
