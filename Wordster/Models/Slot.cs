@@ -9,9 +9,9 @@ namespace Wordster.Models
 {
     public class Slot : NotifiableModel
     {
-        private ObservableCollection<string> _letters;
+        private ObservableCollection<Letter> _letters;
 
-        public ObservableCollection<string> Letters 
+        public ObservableCollection<Letter> Letters 
         {
             get
             {

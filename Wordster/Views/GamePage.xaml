@@ -20,15 +20,17 @@
 
                     <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Letters}">
                         <BindableLayout.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="models:Letter">
 
                                 <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
-                                    Style="{StaticResource TileSlot}"
-                                    >
+                                           Style="{StaticResource TileSlot}"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type vm:GameViewModel}}, Path=RemoveLetterCommand }"
+                                           CommandParameter="{Binding Index, Converter={StaticResource IntegerToStringConverter}}"
+                                           >
 
                                     <Grid>
-                                        <Label Text="{Binding .}"
-                                        Style="{StaticResource TileText}"/>
+                                        <Label Text="{Binding Value}"
+                                               Style="{StaticResource TileText}"/>
                                     </Grid>
 
                                 </NeoButton>

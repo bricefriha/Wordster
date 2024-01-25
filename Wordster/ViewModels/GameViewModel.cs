@@ -1,4 +1,5 @@
-﻿using MvvmHelpers;
+﻿using Microsoft.Maui.Controls;
+using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -52,10 +53,13 @@ namespace Wordster.ViewModels
             {
                 Slot slot = new()
                 {
-                    Letters = new ObservableCollection<string>()
+                    Letters = new ObservableCollection<Letter>()
                 };
                 for (int si = 0; si < characterCountMax; si++)
-                    slot.Letters.Add("");
+                    slot.Letters.Add(new Letter
+                    {
+                        Value = ""
+                    });
 
                 Slots.Add(slot);
             }
@@ -63,25 +67,55 @@ namespace Wordster.ViewModels
 
             _addLetterCommand = new Command<string>((character) =>
             {
-                ObservableCollection<string> letters = Slots[_currentLine].Letters;
-                int index = letters.IndexOf(letters.FirstOrDefault(l => string.IsNullOrEmpty(l)));
+                ObservableCollection<Letter> letters = Slots[_currentLine].Letters;
+                int index = letters.IndexOf(letters.FirstOrDefault(l => string.IsNullOrEmpty(l.Value)));
 
                 if (index == -1)
                     return;
 
-                Slots[_currentLine].Letters[index] = character;
+                Slots[_currentLine].Letters[index].Value = character;
             });
 
             _removeLetterCommand = new Command<string>((pos) =>
             {
-                ObservableCollection<string> letters = Slots[_currentLine].Letters;
-                int index = letters.IndexOf(letters.LastOrDefault(l => !string.IsNullOrEmpty(l)));
+                ObservableCollection<Letter> letters = Slots[_currentLine].Letters;
+                int index = letters.IndexOf(letters.LastOrDefault(l => !string.IsNullOrEmpty(l.Value)));
 
                 int v = Convert.ToInt16(pos);
-                if (v == -1)
+                bool isRegular = v == -1;
+                if (isRegular)
                     v = index;
 
-                Slots[_currentLine].Letters[v] = string.Empty;
+                if (!isRegular && !string.IsNullOrEmpty(letters[v + 1].Value))
+                {
+                    int nextSlotsCount = characterCountMax - v;
+
+                    for (int i = v; i < characterCountMax; i++)
+                    {
+                        int nextIndex = i + 1;
+                        Letter letter = nextIndex > letters.Count -1  || nextSlotsCount < i? new Letter
+                        {
+                            Index = i,
+                            Value = ""
+                        }:
+                        new Letter
+                        {
+                            Index = i,
+                            Value = letters[nextIndex].Value
+                        };
+                        Slots[_currentLine].Letters[i] = letter;
+                    }
+                }
+                else
+                {
+
+
+                    Slots[_currentLine].Letters[v] = new Letter
+                    {
+                        Index = v,
+                        Value = ""
+                    };
+                }
             });
         }
     }
