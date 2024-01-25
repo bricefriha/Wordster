@@ -44,11 +44,13 @@ namespace Wordster.ViewModels
                 return _removeLetterCommand; 
             }
         }
-
+        private Color _emptyColour ;
+        private Color _filledColour ;
 
         public GameViewModel()
         {
             _slots = new ObservableCollection<Slot>();
+            GetResourceColours();
             for (int i = 0; i < slotCount; i++)
             {
                 Slot slot = new()
@@ -58,9 +60,12 @@ namespace Wordster.ViewModels
                 for (int si = 0; si < characterCountMax; si++)
                     slot.Letters.Add(new Letter
                     {
+                        BackgroundColour = _emptyColour,
+                        Elevation = 0,
                         Value = ""
                     });
 
+                // Add another line
                 Slots.Add(slot);
             }
 
@@ -75,6 +80,15 @@ namespace Wordster.ViewModels
                 RemoveLetter(Convert.ToInt16(pos));
             });
         }
+
+        private void GetResourceColours()
+        {
+            App.Current.Resources.TryGetValue("DarkButtonBrush", out var emptycolorvalue);
+            App.Current.Resources.TryGetValue("DefaultButtonBrush", out var filledcolorvalue);
+            _emptyColour = emptycolorvalue as Color;
+            _filledColour = filledcolorvalue as Color;
+        }
+
         /// <summary>
         /// Add a letter at the end of the current row
         /// </summary>
@@ -88,12 +102,14 @@ namespace Wordster.ViewModels
                 return;
 
             Slots[_currentLine].Letters[index].Value = letter;
+            Slots[_currentLine].Letters[index].BackgroundColour = _filledColour;
+            Slots[_currentLine].Letters[index].Elevation = .25;
         }
 
         /// <summary>
         /// Remove a letter from the current line
         /// </summary>
-        /// <param name="pos">position of the leter to delete. (-1 to remove the last letter)</param>
+        /// <param name="pos">position of the letter to delete. (-1 to remove the last letter)</param>
         private void RemoveLetter(int pos)
         {
             ObservableCollection<Letter> letters = Slots[_currentLine].Letters;
@@ -113,23 +129,30 @@ namespace Wordster.ViewModels
                     Letter letter = nextIndex > letters.Count - 1 || nextSlotsCount < i ? new Letter
                     {
                         Index = i,
+                        BackgroundColour = _emptyColour,
+                        Elevation = 0,
                         Value = ""
                     } :
                     new Letter
                     {
                         Index = i,
+                        BackgroundColour = letters[nextIndex].BackgroundColour,
+                        Elevation = letters[nextIndex].Elevation,
                         Value = letters[nextIndex].Value
                     };
+
+                    // Update the letter
                     Slots[_currentLine].Letters[i] = letter;
                 }
             }
             else
             {
-
-
+                // Add empty slot
                 Slots[_currentLine].Letters[pos] = new Letter
                 {
                     Index = pos,
+                    BackgroundColour = _emptyColour,
+                    Elevation = 0,
                     Value = ""
                 };
             }

@@ -22,6 +22,28 @@ namespace Wordster.Models
                 OnPropertyChanged(nameof(Value));
             }
         }
+        private double _elevation;
+
+        public double Elevation
+        {
+            get { return _elevation; }
+            set 
+            { 
+                _elevation = value; 
+                OnPropertyChanged(nameof(Elevation));
+            }
+        }
+        private Color _backgroundColour ;
+
+        public Color BackgroundColour
+        {
+            get { return _backgroundColour; }
+            set 
+            {
+                _backgroundColour = value; 
+                OnPropertyChanged(nameof(BackgroundColour));
+            }
+        }
 
 
         public Letter()
