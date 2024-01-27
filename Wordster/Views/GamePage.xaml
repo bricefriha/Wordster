@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Wordster.ViewModels"
+             xmlns:models="clr-namespace:Wordster.Models"
+             x:Class="Wordster.Views.GamePage"
+             x:DataType="vm:GameViewModel"
+             Title="GamePage"
+             BackgroundColor="{StaticResource DefaultButtonBrush}"
+             >
+    <Grid RowDefinitions="auto, *">
+        <!-- Slots -->
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="CenterAndExpand"
+                             Grid.Row="0"
+                             Margin="0,20"
+                             BindableLayout.ItemsSource="{Binding Slots}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="models:Slot">
+
+                    <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Letters}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:Letter">
+
+                                <NeoButton BackgroundColor="{Binding BackgroundColour}"
+                                           Elevation="{Binding Elevation}"
+                                           Style="{StaticResource TileSlot}"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type vm:GameViewModel}}, Path=RemoveLetterCommand }"
+                                           CommandParameter="{Binding Index, Converter={StaticResource IntegerToStringConverter}}"
+                                           >
+
+                                    <Grid>
+                                        <Label Text="{Binding Value}"
+                                               Style="{StaticResource TileText}"/>
+                                    </Grid>
+
+                                </NeoButton>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Row="1">
+            <!-- line 1-->
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="Q">
+                    <Grid>
+                        <Label Text="Q"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="W">
+
+                    <Grid>
+                        <Label Text="W"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="E">
+
+                    <Grid>
+                        <Label Text="E"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="R">
+
+                    <Grid>
+                        <Label Text="R"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="T">
+
+                    <Grid>
+                        <Label Text="T"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="Y">
+
+                    <Grid>
+                        <Label Text="Y"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="U">
+
+                    <Grid>
+                        <Label Text="U"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="I">
+
+                    <Grid>
+                        <Label Text="I"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="O">
+
+                    <Grid>
+                        <Label Text="O"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="P">
+
+                    <Grid>
+                        <Label Text="P"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+            </HorizontalStackLayout>
+            <!-- line 2-->
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="A">
+                    <Grid>
+                        <Label Text="A"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="S">
+
+                    <Grid>
+                        <Label Text="S"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="D">
+
+                    <Grid>
+                        <Label Text="D"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="F">
+
+                    <Grid>
+                        <Label Text="F"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="G">
+
+                    <Grid>
+                        <Label Text="G"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="H">
+
+                    <Grid>
+                        <Label Text="H"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="J">
+
+                    <Grid>
+                        <Label Text="J"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="K">
+
+                    <Grid>
+                        <Label Text="K"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="L">
+
+                    <Grid>
+                        <Label Text="L"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+            </HorizontalStackLayout>
+            <!-- line 3-->
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <NeoButton BackgroundColor="{StaticResource DarkButtonBrush}"
+                           Command="{Binding RemoveLetterCommand}"
+                           CommandParameter="-1"
+                           Style="{StaticResource ActionGameButton}">
+                    <Grid>
+                        <Label Text="Back"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="Z">
+                    <Grid>
+                        <Label Text="Z"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="X">
+
+                    <Grid>
+                        <Label Text="X"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="C">
+
+                    <Grid>
+                        <Label Text="C"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="V">
+
+                    <Grid>
+                        <Label Text="V"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="B">
+
+                    <Grid>
+                        <Label Text="B"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="N">
+
+                    <Grid>
+                        <Label Text="N"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileGameButton}"
+                           Command="{Binding AddLetterCommand}"
+                           CommandParameter="M">
+
+                    <Grid>
+                        <Label Text="M"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource AlmostRightButtonBrush}"
+                           Style="{StaticResource ActionGameButton}">
+
+                    <Grid>
+                        <Label Text="Check"
+                               Style="{StaticResource TileText}"/>
+                    </Grid>
+
+                </NeoButton>
+                
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+    
+</ContentPage>
