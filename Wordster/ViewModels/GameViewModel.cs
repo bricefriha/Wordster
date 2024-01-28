@@ -107,9 +107,14 @@ namespace Wordster.ViewModels
             _checkWordCommand = new Command(() =>
             {
                 CheckAttempt();
+                // Go to next line
+                _currentLine++;
             });
         }
 
+        /// <summary>
+        /// Check the word of the current line
+        /// </summary>
         private void CheckAttempt()
         {
             // Look at all the slots of the currentline
