@@ -4,9 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">#512BD4</Color>
+    <Color x:Key="Primary">#5891D7</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="Tertiary">#8fce00</Color>
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
@@ -40,5 +40,13 @@
     <Color x:Key="Blue100Accent">#3E8EED</Color>
     <Color x:Key="Blue200Accent">#72ACF1</Color>
     <Color x:Key="Blue300Accent">#A7CBF6</Color>
+    
+    
+    <!--In game-->
+    <Color x:Key="DefaultButtonBrush">#e3edf7</Color>
+    <Color x:Key="DarkButtonBrush">#9EA5AC</Color>
+    <Color x:Key="AlmostRightButtonBrush">#A7CBF6</Color>
+    <Color x:Key="NailedButtonBrush">#8fce00</Color>
+
 
 </ResourceDictionary>

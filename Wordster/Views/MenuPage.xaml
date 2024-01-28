@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wordster.Views.MenuPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#e3edf7">
+    <VerticalStackLayout VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Spacing="10">
+        <!--<Label 
+               Text="Lexuis"
+               TextColor="#FF8D00"
+               FontSize="100"
+               FontFamily="MouseMemoirs-Regular"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" />-->
+        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*"
+              HorizontalOptions="Center" >
+
+            <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                       Style="{StaticResource TileButton}">
+
+                <Grid>
+                    <Label Text="W"
+                           TextColor="Black"
+                           FontSize="{StaticResource TitleFontSize}"
+                           FontFamily="MouseMemoirs-Regular"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                </Grid>
+
+            </NeoButton>
+
+            <NeoButton BackgroundColor="{StaticResource AlmostRightButtonBrush}"
+                       Style="{StaticResource TileButton}"
+                       Grid.Column="1">
+
+                <Grid>
+                    <Label Text="R"
+                           TextColor="Black"
+                           FontSize="{StaticResource TitleFontSize}"
+                           FontFamily="MouseMemoirs-Regular"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                </Grid>
+
+            </NeoButton>
+
+            <NeoButton BackgroundColor="{StaticResource NailedButtonBrush}"
+                       Style="{StaticResource TileButton}"
+                       Grid.Column="2">
+
+                <Grid>
+                    <Label Text="O"
+                           TextColor="Black"
+                           FontSize="{StaticResource TitleFontSize}"
+                           FontFamily="MouseMemoirs-Regular"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                </Grid>
+
+            </NeoButton>
+
+            <NeoButton BackgroundColor="{StaticResource AlmostRightButtonBrush}"
+                       Style="{StaticResource TileButton}"
+                       Grid.Column="3">
+
+                <Grid>
+                    <Label Text="P"
+                           TextColor="Black"
+                           FontSize="{StaticResource TitleFontSize}"
+                           FontFamily="MouseMemoirs-Regular"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                </Grid>
+
+            </NeoButton>
+
+            <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                       Style="{StaticResource TileButton}"
+                       Grid.Column="3">
+
+                <Grid>
+                    <Label Text="P"
+                           TextColor="Black"
+                           FontSize="{StaticResource TitleFontSize}"
+                           FontFamily="MouseMemoirs-Regular"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                </Grid>
+
+            </NeoButton>
+
+            <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                       Style="{StaticResource TileButton}"
+                       Grid.Column="4">
+
+                <Grid>
+                    <Label Text="E"
+                           TextColor="Black"
+                           FontSize="{StaticResource TitleFontSize}"
+                           FontFamily="MouseMemoirs-Regular"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                </Grid>
+
+            </NeoButton>
+
+            <NeoButton BackgroundColor="{StaticResource AlmostRightButtonBrush}"
+                       Style="{StaticResource TileButton}"
+                       Grid.Column="5">
+
+                <Grid>
+                    <Label Text="R"
+                           TextColor="Black"
+                           FontSize="{StaticResource TitleFontSize}"
+                           FontFamily="MouseMemoirs-Regular"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                </Grid>
+
+            </NeoButton>
+        </Grid>
+        <NeoButton BackgroundColor="#e3edf7"
+                   HorizontalOptions="Center"
+                   Elevation=".25"
+                   Margin="80,0"
+                   Command="{Binding NavCommand}"
+                   CommandParameter="Game"
+                   CornerRadius="20"
+                   HeightRequest="50">
+
+            <Grid>
+                <Label Text="Quick game"
+                       TextColor="Black"
+                       FontSize="20"
+                       FontFamily="MouseMemoirs-Regular"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </Grid>
+
+        </NeoButton>
+    </VerticalStackLayout>
+</ContentPage>

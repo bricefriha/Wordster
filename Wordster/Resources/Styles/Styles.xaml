@@ -402,4 +402,49 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+    <x:Double x:Key="TitleFontSize">30</x:Double>
+    <x:Double x:Key="TitleTileSize">50</x:Double>
+    <x:Double x:Key="ButtonTileSize">48</x:Double>
+    <x:Double x:Key="ActionButtonWidth">70</x:Double>
+    <x:Double x:Key="ActionButtonHeight">50</x:Double>
+    <x:Double x:Key="SlotTileSize">70</x:Double>
+    <x:Double x:Key="TileRadius">10</x:Double>
+    <Style TargetType="NeoButton"
+           x:Key="TileButton">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Elevation" Value=".25" />
+        <Setter Property="CornerRadius" Value="{StaticResource TileRadius}" />
+        <Setter Property="WidthRequest" Value="{StaticResource TitleTileSize}" />
+        <Setter Property="HeightRequest" Value="{StaticResource TitleTileSize}" />
+    </Style>
+    <Style TargetType="NeoButton"
+           BasedOn="{StaticResource TileButton}"
+           x:Key="TileGameButton">
+        <Setter Property="Elevation" Value=".25" />
+        <Setter Property="Margin" Value="-5,2" />
+        <Setter Property="WidthRequest" Value="{StaticResource ButtonTileSize}" />
+        <Setter Property="HeightRequest" Value="{StaticResource SlotTileSize}" />
+    </Style>
+    <Style TargetType="NeoButton"
+           BasedOn="{StaticResource TileGameButton}"
+           x:Key="ActionGameButton">
+        <Setter Property="WidthRequest" Value="{StaticResource ActionButtonWidth}" />
+    </Style>
+    <Style TargetType="NeoButton"
+           x:Key="TileSlot">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Elevation" Value=".10" />
+        <Setter Property="CornerRadius" Value="{StaticResource TileRadius}" />
+        <Setter Property="WidthRequest" Value="{StaticResource SlotTileSize}" />
+        <Setter Property="HeightRequest" Value="{StaticResource SlotTileSize}" />
+    </Style>
+    <Style TargetType="Label"
+           x:Key="TileText">
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
+        <Setter Property="FontFamily" Value="MouseMemoirs-Regular" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
 </ResourceDictionary>
