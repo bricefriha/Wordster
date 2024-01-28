@@ -344,6 +344,7 @@
 
                 </NeoButton>
                 <NeoButton BackgroundColor="{StaticResource AlmostRightButtonBrush}"
+                           Command="{Binding CheckWordCommand}"
                            Style="{StaticResource ActionGameButton}">
 
                     <Grid>
