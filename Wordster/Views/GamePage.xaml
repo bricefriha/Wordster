@@ -44,7 +44,7 @@
         <VerticalStackLayout Grid.Row="1">
             <!-- line 1-->
             <HorizontalStackLayout HorizontalOptions="Center">
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[0].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="Q">
@@ -54,7 +54,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[1].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="W">
@@ -65,7 +65,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[2].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="E">
@@ -76,7 +76,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[3].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="R">
@@ -87,7 +87,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[4].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="T">
@@ -98,7 +98,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[5].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="Y">
@@ -109,7 +109,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[6].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="U">
@@ -120,7 +120,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[7].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="I">
@@ -131,7 +131,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[8].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="O">
@@ -142,7 +142,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[9].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="P">
@@ -156,7 +156,7 @@
             </HorizontalStackLayout>
             <!-- line 2-->
             <HorizontalStackLayout HorizontalOptions="Center">
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[10].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="A">
@@ -166,7 +166,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[11].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="S">
@@ -177,7 +177,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[12].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="D">
@@ -188,7 +188,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[13].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="F">
@@ -199,7 +199,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[14].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="G">
@@ -210,7 +210,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[15].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="H">
@@ -221,7 +221,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[16].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="J">
@@ -232,7 +232,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[17].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="K">
@@ -243,7 +243,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[18].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="L">
@@ -267,7 +267,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[19].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="Z">
@@ -277,7 +277,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[20].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="X">
@@ -288,7 +288,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[21].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="C">
@@ -299,7 +299,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[22].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="V">
@@ -310,7 +310,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[23].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="B">
@@ -321,7 +321,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[24].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="N">
@@ -332,7 +332,7 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                <NeoButton BackgroundColor="{Binding Keys[25].BackgroundColour}"
                            Style="{StaticResource TileGameButton}"
                            Command="{Binding AddLetterCommand}"
                            CommandParameter="M">

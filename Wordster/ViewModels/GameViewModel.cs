@@ -9,8 +9,11 @@ namespace Wordster.ViewModels
     {
         private const int characterCountMax = 5;
         private const int slotCount = 6;
-        private ObservableCollection<Slot> _slots;
         private int _currentLine = 0;
+        private const string _qwerty = "qwertyuiopasdfghjklzxcvbnm";
+
+
+        private ObservableCollection<Slot> _slots;
 
         public ObservableCollection<Slot> Slots
         {
@@ -19,6 +22,17 @@ namespace Wordster.ViewModels
             {
                 _slots = value;
                 OnPropertyChanged(nameof(Slots));
+            }
+        }
+
+        private ObservableCollection<Letter> _keys;
+        public ObservableCollection<Letter> Keys
+        {
+            get { return _keys; }
+            set 
+            {
+                _keys = value;
+                OnPropertyChanged(nameof(Keys));
             }
         }
         private Command<string> _addLetterCommand;
@@ -41,6 +55,7 @@ namespace Wordster.ViewModels
         }
         private Color _emptyColour ;
         private Color _filledColour ;
+        private string validWord = "fault";
 
         public GameViewModel()
         {
@@ -64,6 +79,7 @@ namespace Wordster.ViewModels
                 Slots.Add(slot);
             }
 
+            GenerateKeys();
 
             _addLetterCommand = new Command<string>((character) =>
             {
@@ -74,6 +90,22 @@ namespace Wordster.ViewModels
             {
                 RemoveLetter(Convert.ToInt16(pos));
             });
+        }
+        /// <summary>
+        /// Generate the values for each keys
+        /// </summary>
+        private void GenerateKeys()
+        {
+            // Instanciate the collection of keys
+            Keys = new ObservableCollection<Letter>();
+
+            // Generate keys
+            for (int i = 0; i < _qwerty.Length; i++)
+                Keys.Add(new Letter
+                {
+                    Value = _qwerty[i].ToString(),
+                    BackgroundColour = _filledColour,
+                });
         }
 
         private void GetResourceColours()
