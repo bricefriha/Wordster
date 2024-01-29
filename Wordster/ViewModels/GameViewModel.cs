@@ -1,9 +1,11 @@
 ﻿
+using CommunityToolkit.Maui.Views;
 using MvvmHelpers;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Wordster.Models;
+using Wordster.Views.PopUps;
 
 namespace Wordster.ViewModels
 {
@@ -14,6 +16,9 @@ namespace Wordster.ViewModels
         private int _currentLine = 0;
         private const string _qwerty = "qwertyuiopasdfghjklzxcvbnm";
 
+
+
+        public App CurrentApp { get; }
 
         private ObservableCollection<Slot> _slots;
 
@@ -72,6 +77,7 @@ namespace Wordster.ViewModels
 
         public GameViewModel()
         {
+            CurrentApp = (App)App.Current;
             _slots = new ObservableCollection<Slot>();
             GetResourceColours();
             for (int i = 0; i < slotCount; i++)
@@ -249,6 +255,12 @@ namespace Wordster.ViewModels
                     Value = ""
                 };
             }
+        }
+        public void DisplaySuccessPopup()
+        {
+            var popup = new ResultPopUp();
+
+            (CurrentApp.MainPage as AppShell).CurrentPage.ShowPopup(popup);
         }
     }
 }
