@@ -80,6 +80,7 @@ namespace Wordster.ViewModels
             CurrentApp = (App)App.Current;
             _slots = new ObservableCollection<Slot>();
             GetResourceColours();
+
             for (int i = 0; i < slotCount; i++)
             {
                 Slot slot = new()
@@ -113,9 +114,27 @@ namespace Wordster.ViewModels
             _checkWordCommand = new Command(() =>
             {
                 CheckAttempt();
-                // Go to next line
-                _currentLine++;
+
+                if (CheckIfWordFound())
+                    DisplaySuccessPopup();
+                else
+                    // Go to next line
+                    _currentLine++;
+
+
             });
+        }
+
+        private bool CheckIfWordFound()
+        {
+            bool result = true;
+
+            ObservableCollection<Letter> letters = Slots[_currentLine].Letters;
+            for (int i = 0; i < letters.Count && result; i++)
+                if (letters[i].BackgroundColour != _validColour)
+                    result = false;
+
+            return result;
         }
 
         /// <summary>
