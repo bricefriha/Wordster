@@ -48,6 +48,7 @@
     <Color x:Key="DarkButtonBrush">#9EA5AC</Color>
     <Color x:Key="AlmostRightButtonBrush">#A7CBF6</Color>
     <Color x:Key="NailedButtonBrush">#8fce00</Color>
+    <Color x:Key="FailButtonBrush">#A52A2A</Color>
 
 
 </ResourceDictionary>

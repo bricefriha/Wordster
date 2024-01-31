@@ -409,6 +409,7 @@
     <x:Double x:Key="ActionButtonHeight">50</x:Double>
     <x:Double x:Key="SlotTileSize">70</x:Double>
     <x:Double x:Key="TileRadius">10</x:Double>
+    <x:Double x:Key="ButtonRadius">20</x:Double>
     <Style TargetType="NeoButton"
            x:Key="TileButton">
         <Setter Property="HorizontalOptions" Value="Center" />
@@ -416,6 +417,21 @@
         <Setter Property="CornerRadius" Value="{StaticResource TileRadius}" />
         <Setter Property="WidthRequest" Value="{StaticResource TitleTileSize}" />
         <Setter Property="HeightRequest" Value="{StaticResource TitleTileSize}" />
+    </Style>
+    <Style TargetType="NeoButton"
+           x:Key="TileButtonPopup">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Elevation" Value=".25" />
+        <Setter Property="CornerRadius" Value="{StaticResource ButtonRadius}" />
+        <Setter Property="HeightRequest" Value="{StaticResource TitleTileSize}" />
+        <Setter Property="WidthRequest" Value="100" />
+        <!--
+                HorizontalOptions="Center"
+                Elevation=".25"
+                CornerRadius="20"
+                HeightRequest="50"
+                WidthRequest="100"
+        -->
     </Style>
     <Style TargetType="NeoButton"
            BasedOn="{StaticResource TileButton}"

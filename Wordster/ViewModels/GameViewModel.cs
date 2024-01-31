@@ -278,9 +278,11 @@ namespace Wordster.ViewModels
         }
         public void DisplaySuccessPopup()
         {
-            var popup = new ResultPopUp();
-            MopupService.Instance.PushAsync(popup);
-            //(CurrentApp.MainPage as AppShell).CurrentPage.ShowPopup(popup);
+            MopupService.Instance.PushAsync(new ResultPopUp(validWord, true));
+        }
+        public void DisplayFailPopup()
+        {
+            MopupService.Instance.PushAsync(new ResultPopUp(validWord, false));
         }
     }
 }
