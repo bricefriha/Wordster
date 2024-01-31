@@ -9,25 +9,83 @@
         <mopupsanim:ScaleAnimation
             DurationIn="700"
             EasingIn="BounceOut"
-            PositionIn="Bottom"
+            PositionIn="Top"
             PositionOut="Center"
             ScaleIn="1"
             ScaleOut="0.7" />
     </mopups:PopupPage.Animation>
     <Border WidthRequest="300" HeightRequest="300"
-                BackgroundColor="White"
-                HorizontalOptions="Center">
+            BackgroundColor="{StaticResource DefaultButtonBrush}"
+            HorizontalOptions="Center">
         <Border.StrokeShape>
-            <RoundRectangle CornerRadius="40,0,0,40"/>
+            <RoundRectangle CornerRadius="40"/>
         </Border.StrokeShape>
 
         <VerticalStackLayout 
                              VerticalOptions="Center" 
-                             HorizontalOptions="Center" >
+                             HorizontalOptions="Center"
+                             Spacing="10">
             <Label Text="Yaaay you got it right!"
+                   TextColor="{StaticResource PrimaryDark}"
+                   VerticalOptions="Center" 
+                           FontFamily="MouseMemoirs-Regular"
+                   FontAttributes="Bold"
+                   Margin="0,10"
+                   HorizontalOptions="Center"
+                   FontSize="20" />
+            <Label Text="The word was:"
+                   TextColor="{StaticResource PrimaryDark}"
                    VerticalOptions="Center" 
                    HorizontalOptions="Center"
-                   FontSize="18" />
+                   FontSize="15" />
+            <Frame BackgroundColor="{StaticResource PrimaryDark}"
+                   HeightRequest="40"
+                   Padding="1"
+                   WidthRequest="80"
+                   >
+                <Label Text="FAULT"
+                       TextColor="{StaticResource DefaultButtonBrush}"
+                       VerticalOptions="Center" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="15" />
+            </Frame>
+            <HorizontalStackLayout >
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           HorizontalOptions="Center"
+                           Elevation=".25"
+                           CornerRadius="20"
+                           HeightRequest="50"
+                           WidthRequest="100">
+
+                    <Grid>
+                        <Label Text="Back"
+                               TextColor="{StaticResource PrimaryDark}"
+                               FontSize="20"
+                               FontFamily="MouseMemoirs-Regular"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource PrimaryDark}"
+                           HorizontalOptions="Center"
+                           Elevation=".25"
+                           CornerRadius="20"
+                           HeightRequest="50"
+                           WidthRequest="100">
+
+                    <Grid>
+                        <Label Text="Try again"
+                               TextColor="{StaticResource DefaultButtonBrush}"
+                               FontSize="20"
+                               FontFamily="MouseMemoirs-Regular"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                    </Grid>
+
+                </NeoButton>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
     </Border>
 </mopups:PopupPage>

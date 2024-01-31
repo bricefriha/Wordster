@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Color x:Key="Primary">#5891D7</Color>
+    <Color x:Key="PrimaryDark">#233A56</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
     <Color x:Key="Tertiary">#8fce00</Color>
     <Color x:Key="White">White</Color>

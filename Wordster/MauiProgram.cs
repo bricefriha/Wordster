@@ -13,13 +13,13 @@ namespace Wordster
             builder.UseMauiApp<App>()
                    .ConfigureMopups()
                    .UseNeoControls().ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                fonts.AddFont("ComicShark.otf", "ComicShark");
-                fonts.AddFont("SonicComics.ttf", "SonicComics");
-                fonts.AddFont("MouseMemoirs-Regular.ttf", "MouseMemoirs-Regular");
-            }).UseMauiCommunityToolkit();
+                   {
+                       fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                       fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                       fonts.AddFont("ComicShark.otf", "ComicShark");
+                       fonts.AddFont("SonicComics.ttf", "SonicComics");
+                       fonts.AddFont("MouseMemoirs-Regular.ttf", "MouseMemoirs-Regular");
+                   }).UseMauiCommunityToolkit();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
