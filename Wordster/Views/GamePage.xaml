@@ -343,12 +343,13 @@
                     </Grid>
 
                 </NeoButton>
-                <NeoButton BackgroundColor="{StaticResource AlmostRightButtonBrush}"
+                <NeoButton BackgroundColor="{StaticResource PrimaryDark}"
                            Command="{Binding CheckWordCommand}"
                            Style="{StaticResource ActionGameButton}">
 
                     <Grid>
                         <Label Text="Check"
+                               TextColor="{StaticResource DefaultButtonBrush}"
                                Style="{StaticResource TileText}"/>
                     </Grid>
 
