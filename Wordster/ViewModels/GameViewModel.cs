@@ -1,5 +1,6 @@
 ﻿
 using CommunityToolkit.Maui.Views;
+using Mopups.Services;
 using MvvmHelpers;
 using System;
 using System.Collections.ObjectModel;
@@ -278,8 +279,8 @@ namespace Wordster.ViewModels
         public void DisplaySuccessPopup()
         {
             var popup = new ResultPopUp();
-
-            (CurrentApp.MainPage as AppShell).CurrentPage.ShowPopup(popup);
+            MopupService.Instance.PushAsync(popup);
+            //(CurrentApp.MainPage as AppShell).CurrentPage.ShowPopup(popup);
         }
     }
 }

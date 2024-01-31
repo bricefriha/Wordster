@@ -1,6 +1,7 @@
 ﻿using Maui.NeoControls;
 using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using Mopups.Hosting;
 
 namespace Wordster
 {
@@ -9,7 +10,9 @@ namespace Wordster
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-            builder.UseMauiApp<App>().UseNeoControls().ConfigureFonts(fonts =>
+            builder.UseMauiApp<App>()
+                   .ConfigureMopups()
+                   .UseNeoControls().ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
