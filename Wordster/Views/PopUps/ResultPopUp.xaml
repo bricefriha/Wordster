@@ -78,7 +78,8 @@
             </Frame>
             <HorizontalStackLayout >
                 <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
-                           Style="{StaticResource TileButtonPopup}">
+                           Style="{StaticResource TileButtonPopup}"
+                           Clicked="BackButton_Clicked">
 
                     <Grid>
                         <Label Text="Back"
@@ -86,7 +87,8 @@
                                FontSize="20"
                                FontFamily="MouseMemoirs-Regular"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
+                               HorizontalOptions="Center"
+                               />
                     </Grid>
 
                 </NeoButton>
