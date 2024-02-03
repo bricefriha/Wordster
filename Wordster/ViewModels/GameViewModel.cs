@@ -120,7 +120,8 @@ namespace Wordster.ViewModels
                     DisplaySuccessPopup();
                 else
                     // Go to next line
-                    _currentLine++;
+                    if (++_currentLine == slotCount)
+                        DisplayFailPopup();
 
 
             });
