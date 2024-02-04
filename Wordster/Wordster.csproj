@@ -62,10 +62,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\PopUps\GiveUpPopUp.xaml.cs">
+	    <DependentUpon>GiveUpPopUp.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\GamePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MenuPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\GiveUpPopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\PopUps\ResultPopUp.xaml">

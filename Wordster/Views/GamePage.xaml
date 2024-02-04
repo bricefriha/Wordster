@@ -5,9 +5,29 @@
              xmlns:models="clr-namespace:Wordster.Models"
              x:Class="Wordster.Views.GamePage"
              x:DataType="vm:GameViewModel"
-             Title="GamePage"
              BackgroundColor="{StaticResource DefaultButtonBrush}"
              >
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,auto"
+              Padding="10,0">
+            <Label Text="Game On"
+                   Grid.Column="0"
+                   FontFamily="MouseMemoirs-Regular"
+                   FontSize="30"
+                   
+                   TextColor="{StaticResource DefaultButtonBrush}"
+                   VerticalOptions="Center"/>
+            <Button Text="Give Up" 
+                    Grid.Column="1"
+                    FontFamily="MouseMemoirs-Regular"
+                    BackgroundColor="{StaticResource PrimaryDark}"
+                    WidthRequest="90"
+                    HeightRequest="40"
+                    FontSize="18"
+                    Command="{Binding GiveUpCommand}"
+                    />
+        </Grid>
+    </Shell.TitleView>
     <Grid RowDefinitions="auto, *">
         <!-- Slots -->
         <VerticalStackLayout HorizontalOptions="Center"

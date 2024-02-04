@@ -70,6 +70,15 @@ namespace Wordster.ViewModels
                 return _checkWordCommand; 
             }
         }
+        private Command _giveUpCommand;
+
+        public Command GiveUpCommand
+        {
+            get 
+            { 
+                return _giveUpCommand; 
+            }
+        }
         private Color _emptyColour ;
         private Color _filledColour ;
         private Color _almostValidColour;
@@ -114,17 +123,25 @@ namespace Wordster.ViewModels
 
             _checkWordCommand = new Command(() =>
             {
-                CheckAttempt();
-
-                if (CheckIfWordFound())
-                    DisplaySuccessPopup();
-                else
-                    // Go to next line
-                    if (++_currentLine == slotCount)
-                        DisplayFailPopup();
-
+                CheckTheCurrentWord();
 
             });
+            _giveUpCommand = new Command(() =>
+            {
+                DisplayGiveUpPopup();
+            });
+        }
+
+        private void CheckTheCurrentWord()
+        {
+            CheckAttempt();
+
+            if (CheckIfWordFound())
+                DisplaySuccessPopup();
+            else
+                // Go to next line
+                if (++_currentLine == slotCount)
+                DisplayFailPopup();
         }
 
         private bool CheckIfWordFound()
@@ -277,13 +294,27 @@ namespace Wordster.ViewModels
                 };
             }
         }
+
+        /// <summary>
+        /// Show the success pop up
+        /// </summary>
         public void DisplaySuccessPopup()
         {
             MopupService.Instance.PushAsync(new ResultPopUp(validWord, true));
         }
+        /// <summary>
+        /// Show the popup in case of a failure
+        /// </summary>
         public void DisplayFailPopup()
         {
             MopupService.Instance.PushAsync(new ResultPopUp(validWord, false));
+        }
+        /// <summary>
+        /// Show a pop up when giving up that display the word
+        /// </summary>
+        public void DisplayGiveUpPopup()
+        {
+            MopupService.Instance.PushAsync(new GiveUpPopUp(validWord));
         }
     }
 }
