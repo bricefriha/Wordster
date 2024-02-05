@@ -121,6 +121,7 @@ namespace Wordster.ViewModels
         /// </summary>
         private void InitialiseSlots()
         {
+            _currentLine = 0;
             Slots.Clear();
             for (int i = 0; i < slotCount; i++)
             {
