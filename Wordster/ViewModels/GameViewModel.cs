@@ -71,6 +71,7 @@ namespace Wordster.ViewModels
             }
         }
         private Command _giveUpCommand;
+        private Action _retryAction;
 
         public Command GiveUpCommand
         {
@@ -90,24 +91,7 @@ namespace Wordster.ViewModels
             CurrentApp = (App)App.Current;
             _slots = new ObservableCollection<Slot>();
             GetResourceColours();
-
-            for (int i = 0; i < slotCount; i++)
-            {
-                Slot slot = new()
-                {
-                    Letters = new ObservableCollection<Letter>()
-                };
-                for (int si = 0; si < characterCountMax; si++)
-                    slot.Letters.Add(new Letter
-                    {
-                        BackgroundColour = _emptyColour,
-                        Elevation = 0,
-                        Value = ""
-                    });
-
-                // Add another line
-                Slots.Add(slot);
-            }
+            InitialiseSlots();
 
             GenerateKeys();
 
@@ -130,8 +114,68 @@ namespace Wordster.ViewModels
             {
                 DisplayGiveUpPopup();
             });
+            _retryAction = () => GenerateNewGame();
         }
+        /// <summary>
+        /// Prepare or reset the board
+        /// </summary>
+        private void InitialiseSlots()
+        {
+            Slots.Clear();
+            for (int i = 0; i < slotCount; i++)
+            {
+                Slot slot = new()
+                {
+                    Letters = new ObservableCollection<Letter>()
+                };
+                for (int si = 0; si < characterCountMax; si++)
+                    slot.Letters.Add(new Letter
+                    {
+                        BackgroundColour = _emptyColour,
+                        Elevation = 0,
+                        Value = ""
+                    });
 
+                // Add another line
+                Slots.Add(slot);
+            }
+        }
+        /// <summary>
+        /// Rest the keyboard
+        /// </summary>
+        private void ResetKeyboard()
+        {
+            // Go through all the letters
+            for (int i = 0; i < _keys.Count(); i++)
+            {
+
+                // Get the value on the keyboard
+                Keys[i] = new Letter
+                {
+                    Value = _qwerty[i].ToString(),
+                    BackgroundColour = _filledColour,
+                };
+            }
+        }
+        /// <summary>
+        /// Initiate a new game
+        /// </summary>
+        private void GenerateNewGame()
+        {
+            // Genearate a new word
+            //
+            // Code for it
+            // 
+
+            // Reset the Keyboard
+            ResetKeyboard();
+
+            // Reset the slots
+            InitialiseSlots();
+        }
+        /// <summary>
+        /// TO check if the current word is correct
+        /// </summary>
         private void CheckTheCurrentWord()
         {
             CheckAttempt();
@@ -300,21 +344,21 @@ namespace Wordster.ViewModels
         /// </summary>
         public void DisplaySuccessPopup()
         {
-            MopupService.Instance.PushAsync(new ResultPopUp(validWord, true));
+            MopupService.Instance.PushAsync(new ResultPopUp(validWord, true, _retryAction));
         }
         /// <summary>
         /// Show the popup in case of a failure
         /// </summary>
         public void DisplayFailPopup()
         {
-            MopupService.Instance.PushAsync(new ResultPopUp(validWord, false));
+            MopupService.Instance.PushAsync(new ResultPopUp(validWord, false, _retryAction));
         }
         /// <summary>
         /// Show a pop up when giving up that display the word
         /// </summary>
         public void DisplayGiveUpPopup()
         {
-            MopupService.Instance.PushAsync(new GiveUpPopUp(validWord));
+            MopupService.Instance.PushAsync(new GiveUpPopUp(validWord, _retryAction));
         }
     }
 }

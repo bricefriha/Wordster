@@ -93,7 +93,8 @@
 
                 </NeoButton>
                 <NeoButton BackgroundColor="{StaticResource PrimaryDark}"
-                           Style="{StaticResource TileButtonPopup}">
+                           Style="{StaticResource TileButtonPopup}"
+                           Clicked="RetryButton_Clicked">
                     
 
                     <Grid>
