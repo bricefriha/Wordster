@@ -1,6 +1,8 @@
 ﻿
 using MvvmHelpers;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Wordster.Models;
 
 namespace Wordster.ViewModels
@@ -9,8 +11,11 @@ namespace Wordster.ViewModels
     {
         private const int characterCountMax = 5;
         private const int slotCount = 6;
-        private ObservableCollection<Slot> _slots;
         private int _currentLine = 0;
+        private const string _qwerty = "qwertyuiopasdfghjklzxcvbnm";
+
+
+        private ObservableCollection<Slot> _slots;
 
         public ObservableCollection<Slot> Slots
         {
@@ -19,6 +24,17 @@ namespace Wordster.ViewModels
             {
                 _slots = value;
                 OnPropertyChanged(nameof(Slots));
+            }
+        }
+
+        private ObservableCollection<Letter> _keys;
+        public ObservableCollection<Letter> Keys
+        {
+            get { return _keys; }
+            set 
+            {
+                _keys = value;
+                OnPropertyChanged(nameof(Keys));
             }
         }
         private Command<string> _addLetterCommand;
@@ -39,8 +55,20 @@ namespace Wordster.ViewModels
                 return _removeLetterCommand; 
             }
         }
+        private Command _checkWordCommand;
+
+        public Command CheckWordCommand
+        {
+            get 
+            { 
+                return _checkWordCommand; 
+            }
+        }
         private Color _emptyColour ;
         private Color _filledColour ;
+        private Color _almostValidColour;
+        private Color _validColour;
+        private string validWord = "fault";
 
         public GameViewModel()
         {
@@ -64,6 +92,7 @@ namespace Wordster.ViewModels
                 Slots.Add(slot);
             }
 
+            GenerateKeys();
 
             _addLetterCommand = new Command<string>((character) =>
             {
@@ -74,14 +103,83 @@ namespace Wordster.ViewModels
             {
                 RemoveLetter(Convert.ToInt16(pos));
             });
+
+            _checkWordCommand = new Command(() =>
+            {
+                CheckAttempt();
+                // Go to next line
+                _currentLine++;
+            });
         }
 
+        /// <summary>
+        /// Check the word of the current line
+        /// </summary>
+        private void CheckAttempt()
+        {
+            // Look at all the slots of the currentline
+            ObservableCollection<Letter> letters = Slots[_currentLine].Letters;
+
+            for (int i = 0; i < letters.Count; i++)
+            {
+                // For each slots
+                //
+                // Get the value of the slot
+                string value = letters[i].Value;
+                // Get the value on the keyboard
+                Letter keyBoardValue = Keys.First(key => key.Value.ToUpper() == value);
+                //
+                // Check if the character exist in the word
+                if (validWord.Contains(value.ToLower()))
+                {
+                    // Indicate the valid result on the line
+                    letters[i].BackgroundColour = _almostValidColour;
+
+                    // Indicate the valid result on the keyboard
+                    keyBoardValue.BackgroundColour = _almostValidColour;
+                }
+                else
+                {
+                    letters[i].BackgroundColour = _emptyColour;
+                    keyBoardValue.BackgroundColour = _emptyColour;
+                }
+                //
+                // Check if the character is at the right place
+                if (letters[i].Value.ToLower() == validWord[i].ToString())
+                    // Indicate the exactly valid result on the line
+                    letters[i].BackgroundColour = _validColour;
+            }
+        }
+
+        /// <summary>
+        /// Generate the values for each keys
+        /// </summary>
+        private void GenerateKeys()
+        {
+            // Instanciate the collection of keys
+            Keys = new ObservableCollection<Letter>();
+
+            // Generate keys
+            for (int i = 0; i < _qwerty.Length; i++)
+                Keys.Add(new Letter
+                {
+                    Value = _qwerty[i].ToString(),
+                    BackgroundColour = _filledColour,
+                });
+        }
+        /// <summary>
+        /// Generate the colour resources
+        /// </summary>
         private void GetResourceColours()
         {
             App.Current.Resources.TryGetValue("DarkButtonBrush", out var emptycolorvalue);
-            App.Current.Resources.TryGetValue("DefaultButtonBrush", out var filledcolorvalue);
+            App.Current.Resources.TryGetValue("DefaultButtonBrush", out var defaultcolorvalue);
+            App.Current.Resources.TryGetValue("AlmostRightButtonBrush", out var almostRightcolorvalue);
+            App.Current.Resources.TryGetValue("NailedButtonBrush", out var nailedcolorvalue);
             _emptyColour = emptycolorvalue as Color;
-            _filledColour = filledcolorvalue as Color;
+            _filledColour = defaultcolorvalue as Color;
+            _almostValidColour = almostRightcolorvalue as Color;
+            _validColour = nailedcolorvalue as Color;
         }
 
         /// <summary>
