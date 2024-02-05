@@ -147,15 +147,8 @@ namespace Wordster.ViewModels
         {
             // Go through all the letters
             for (int i = 0; i < _keys.Count(); i++)
-            {
-
                 // Get the value on the keyboard
-                Keys[i] = new Letter
-                {
-                    Value = _qwerty[i].ToString(),
-                    BackgroundColour = _filledColour,
-                };
-            }
+                Keys[i].BackgroundColour = _filledColour;
         }
         /// <summary>
         /// Initiate a new game
