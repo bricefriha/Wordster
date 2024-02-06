@@ -15,7 +15,6 @@ namespace Wordster.ViewModels
         private const int characterCountMax = 5;
         private const int slotCount = 6;
         private int _currentLine = 0;
-        private const string _qwerty = "qwertyuiopasdfghjklzxcvbnm";
 
 
 
@@ -43,7 +42,7 @@ namespace Wordster.ViewModels
                 OnPropertyChanged(nameof(Keys));
             }
         }
-        private Command<string> _addLetterCommand;
+        private readonly Command<string> _addLetterCommand;
 
         public Command<string> AddLetterCommand
         {
@@ -52,7 +51,7 @@ namespace Wordster.ViewModels
                 return _addLetterCommand; 
             }
         }
-        private Command<string> _removeLetterCommand;
+        private readonly Command<string> _removeLetterCommand;
 
         public Command<string> RemoveLetterCommand
         {
@@ -70,8 +69,7 @@ namespace Wordster.ViewModels
                 return _checkWordCommand; 
             }
         }
-        private Command _giveUpCommand;
-        private Action _retryAction;
+        private readonly Command _giveUpCommand;
 
         public Command GiveUpCommand
         {
@@ -80,6 +78,8 @@ namespace Wordster.ViewModels
                 return _giveUpCommand; 
             }
         }
+
+        private readonly Action _retryAction;
         private Color _emptyColour ;
         private Color _filledColour ;
         private Color _almostValidColour;
@@ -89,11 +89,9 @@ namespace Wordster.ViewModels
         public GameViewModel()
         {
             CurrentApp = (App)App.Current;
-            _slots = new ObservableCollection<Slot>();
-            GetResourceColours();
-            InitialiseSlots();
 
-            GenerateKeys();
+            // Initiate components etc
+            Initialisation();
 
             _addLetterCommand = new Command<string>((character) =>
             {
@@ -116,19 +114,47 @@ namespace Wordster.ViewModels
             });
             _retryAction = () => GenerateNewGame();
         }
+
+        /// <summary>
+        /// Initiate data the gameplay need
+        /// </summary>
+        private void Initialisation()
+        {
+            // Set the colours
+            GetResourceColours();
+
+            // Initialise the slots
+            InitialiseSlots();
+
+            // Set data of the keyboard
+            GenerateKeys();
+        }
+
         /// <summary>
         /// Prepare or reset the board
         /// </summary>
         private void InitialiseSlots()
         {
+            // Intanciation of slots
+            if (_slots == null)
+                _slots = new ObservableCollection<Slot>();
+
+            // Reset line
             _currentLine = 0;
+
+            // make sure the slots are empty
             Slots.Clear();
+
+            // Create/recreate the slots
             for (int i = 0; i < slotCount; i++)
             {
+                // Generate a slot
                 Slot slot = new()
                 {
                     Letters = new ObservableCollection<Letter>()
                 };
+
+                // Create a placement for each slots
                 for (int si = 0; si < characterCountMax; si++)
                     slot.Letters.Add(new Letter
                     {

@@ -9,7 +9,7 @@ namespace Wordster.ViewModels.Popups
 {
     public class ResultViewModel : BaseViewModel
     {
-        private string _wordResult;
+        private readonly string _wordResult;
 
         public string WordResult
         {
