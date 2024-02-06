@@ -15,7 +15,7 @@ namespace Wordster.ViewModels
         private const int characterCountMax = 5;
         private const int slotCount = 6;
         private int _currentLine = 0;
-
+        private const string _qwerty = "qwertyuiopasdfghjklzxcvbnm";
 
 
         public App CurrentApp { get; }
