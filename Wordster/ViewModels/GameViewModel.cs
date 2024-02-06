@@ -1,9 +1,12 @@
 ﻿
+using CommunityToolkit.Maui.Views;
+using Mopups.Services;
 using MvvmHelpers;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Wordster.Models;
+using Wordster.Views.PopUps;
 
 namespace Wordster.ViewModels
 {
@@ -12,8 +15,10 @@ namespace Wordster.ViewModels
         private const int characterCountMax = 5;
         private const int slotCount = 6;
         private int _currentLine = 0;
-        private const string _qwerty = "qwertyuiopasdfghjklzxcvbnm";
 
+
+
+        public App CurrentApp { get; }
 
         private ObservableCollection<Slot> _slots;
 
@@ -37,7 +42,7 @@ namespace Wordster.ViewModels
                 OnPropertyChanged(nameof(Keys));
             }
         }
-        private Command<string> _addLetterCommand;
+        private readonly Command<string> _addLetterCommand;
 
         public Command<string> AddLetterCommand
         {
@@ -46,7 +51,7 @@ namespace Wordster.ViewModels
                 return _addLetterCommand; 
             }
         }
-        private Command<string> _removeLetterCommand;
+        private readonly Command<string> _removeLetterCommand;
 
         public Command<string> RemoveLetterCommand
         {
@@ -64,6 +69,17 @@ namespace Wordster.ViewModels
                 return _checkWordCommand; 
             }
         }
+        private readonly Command _giveUpCommand;
+
+        public Command GiveUpCommand
+        {
+            get 
+            { 
+                return _giveUpCommand; 
+            }
+        }
+
+        private readonly Action _retryAction;
         private Color _emptyColour ;
         private Color _filledColour ;
         private Color _almostValidColour;
@@ -72,27 +88,10 @@ namespace Wordster.ViewModels
 
         public GameViewModel()
         {
-            _slots = new ObservableCollection<Slot>();
-            GetResourceColours();
-            for (int i = 0; i < slotCount; i++)
-            {
-                Slot slot = new()
-                {
-                    Letters = new ObservableCollection<Letter>()
-                };
-                for (int si = 0; si < characterCountMax; si++)
-                    slot.Letters.Add(new Letter
-                    {
-                        BackgroundColour = _emptyColour,
-                        Elevation = 0,
-                        Value = ""
-                    });
+            CurrentApp = (App)App.Current;
 
-                // Add another line
-                Slots.Add(slot);
-            }
-
-            GenerateKeys();
+            // Initiate components etc
+            Initialisation();
 
             _addLetterCommand = new Command<string>((character) =>
             {
@@ -106,10 +105,119 @@ namespace Wordster.ViewModels
 
             _checkWordCommand = new Command(() =>
             {
-                CheckAttempt();
-                // Go to next line
-                _currentLine++;
+                CheckTheCurrentWord();
+
             });
+            _giveUpCommand = new Command(() =>
+            {
+                DisplayGiveUpPopup();
+            });
+            _retryAction = () => GenerateNewGame();
+        }
+
+        /// <summary>
+        /// Initiate data the gameplay need
+        /// </summary>
+        private void Initialisation()
+        {
+            // Set the colours
+            GetResourceColours();
+
+            // Initialise the slots
+            InitialiseSlots();
+
+            // Set data of the keyboard
+            GenerateKeys();
+        }
+
+        /// <summary>
+        /// Prepare or reset the board
+        /// </summary>
+        private void InitialiseSlots()
+        {
+            // Intanciation of slots
+            if (_slots == null)
+                _slots = new ObservableCollection<Slot>();
+
+            // Reset line
+            _currentLine = 0;
+
+            // make sure the slots are empty
+            Slots.Clear();
+
+            // Create/recreate the slots
+            for (int i = 0; i < slotCount; i++)
+            {
+                // Generate a slot
+                Slot slot = new()
+                {
+                    Letters = new ObservableCollection<Letter>()
+                };
+
+                // Create a placement for each slots
+                for (int si = 0; si < characterCountMax; si++)
+                    slot.Letters.Add(new Letter
+                    {
+                        BackgroundColour = _emptyColour,
+                        Elevation = 0,
+                        Value = ""
+                    });
+
+                // Add another line
+                Slots.Add(slot);
+            }
+        }
+        /// <summary>
+        /// Rest the keyboard
+        /// </summary>
+        private void ResetKeyboard()
+        {
+            // Go through all the letters
+            for (int i = 0; i < _keys.Count(); i++)
+                // Get the value on the keyboard
+                Keys[i].BackgroundColour = _filledColour;
+        }
+        /// <summary>
+        /// Initiate a new game
+        /// </summary>
+        private void GenerateNewGame()
+        {
+            // Genearate a new word
+            //
+            // Code for it
+            // 
+
+            // Reset the Keyboard
+            ResetKeyboard();
+
+            // Reset the slots
+            InitialiseSlots();
+        }
+        /// <summary>
+        /// TO check if the current word is correct
+        /// </summary>
+        private void CheckTheCurrentWord()
+        {
+            CheckAttempt();
+
+            if (CheckIfWordFound())
+                DisplaySuccessPopup();
+            else
+                // Go to next line
+                if (++_currentLine == slotCount)
+                DisplayFailPopup();
+        }
+
+        private bool CheckIfWordFound()
+        {
+            bool result = true;
+
+            ObservableCollection<Letter> letters = Slots[_currentLine].Letters;
+            for (int i = 0; i < letters.Count && result; i++)
+                if (letters[i].BackgroundColour != _validColour)
+                    result = false;
+
+            return result;
         }
 
         /// <summary>
@@ -249,6 +357,28 @@ namespace Wordster.ViewModels
                     Value = ""
                 };
             }
+        }
+
+        /// <summary>
+        /// Show the success pop up
+        /// </summary>
+        public void DisplaySuccessPopup()
+        {
+            MopupService.Instance.PushAsync(new ResultPopUp(validWord, true, _retryAction));
+        }
+        /// <summary>
+        /// Show the popup in case of a failure
+        /// </summary>
+        public void DisplayFailPopup()
+        {
+            MopupService.Instance.PushAsync(new ResultPopUp(validWord, false, _retryAction));
+        }
+        /// <summary>
+        /// Show a pop up when giving up that display the word
+        /// </summary>
+        public void DisplayGiveUpPopup()
+        {
+            MopupService.Instance.PushAsync(new GiveUpPopUp(validWord, _retryAction));
         }
     }
 }
