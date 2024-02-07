@@ -26,7 +26,7 @@ namespace Wordster.Services
             // Define
             string controller = $"word?length={length}&lang={lang}";
             // Process
-            return (await _wsHerokuApp.Get<string[]>("word"))[0];
+            return (await _wsHerokuApp.Get<string[]>(controller))[0];
 
         }
     }
