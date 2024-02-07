@@ -84,7 +84,7 @@ namespace Wordster.ViewModels
         private Color _filledColour ;
         private Color _almostValidColour;
         private Color _validColour;
-        private string validWord = "fault";
+        public string Word { private get; set; }
 
         public GameViewModel()
         {
@@ -120,6 +120,9 @@ namespace Wordster.ViewModels
         /// </summary>
         private void Initialisation()
         {
+            // Generate a word
+            GeneateNewWord();
+
             // Set the colours
             GetResourceColours();
 
@@ -129,7 +132,10 @@ namespace Wordster.ViewModels
             // Set data of the keyboard
             GenerateKeys();
         }
-
+        private async void GeneateNewWord()
+        {
+            Word = await CurrentApp.DataFetcher.GetRandomWord(characterCountMax);
+        }
         /// <summary>
         /// Prepare or reset the board
         /// </summary>
@@ -183,9 +189,7 @@ namespace Wordster.ViewModels
         private void GenerateNewGame()
         {
             // Genearate a new word
-            //
-            // Code for it
-            // 
+            GeneateNewWord();
 
             // Reset the Keyboard
             ResetKeyboard();
@@ -238,7 +242,7 @@ namespace Wordster.ViewModels
                 Letter keyBoardValue = Keys.First(key => key.Value.ToUpper() == value);
                 //
                 // Check if the character exist in the word
-                if (validWord.Contains(value.ToLower()))
+                if (Word.Contains(value.ToLower()))
                 {
                     // Indicate the valid result on the line
                     letters[i].BackgroundColour = _almostValidColour;
@@ -253,7 +257,7 @@ namespace Wordster.ViewModels
                 }
                 //
                 // Check if the character is at the right place
-                if (letters[i].Value.ToLower() == validWord[i].ToString())
+                if (letters[i].Value.ToLower() == Word[i].ToString())
                     // Indicate the exactly valid result on the line
                     letters[i].BackgroundColour = _validColour;
             }
@@ -364,21 +368,21 @@ namespace Wordster.ViewModels
         /// </summary>
         public void DisplaySuccessPopup()
         {
-            MopupService.Instance.PushAsync(new ResultPopUp(validWord, true, _retryAction));
+            MopupService.Instance.PushAsync(new ResultPopUp(Word, true, _retryAction));
         }
         /// <summary>
         /// Show the popup in case of a failure
         /// </summary>
         public void DisplayFailPopup()
         {
-            MopupService.Instance.PushAsync(new ResultPopUp(validWord, false, _retryAction));
+            MopupService.Instance.PushAsync(new ResultPopUp(Word, false, _retryAction));
         }
         /// <summary>
         /// Show a pop up when giving up that display the word
         /// </summary>
         public void DisplayGiveUpPopup()
         {
-            MopupService.Instance.PushAsync(new GiveUpPopUp(validWord, _retryAction));
+            MopupService.Instance.PushAsync(new GiveUpPopUp(Word, _retryAction));
         }
     }
 }
