@@ -9,11 +9,12 @@ namespace Wordster.Services
 {
     public class Fetcher
     {
+        private const string HeokuApiHost = "random-word-api.herokuapp.com";
         private readonly Service _wsHerokuApp;
 
         public Fetcher() 
         {
-            _wsHerokuApp = new Service("random-word-api.herokuapp.com", sslCertificate: true) ;
+            _wsHerokuApp = new Service(HeokuApiHost, sslCertificate: true) ;
         }
         /// <summary>
         /// Returns a random word using parameters given
