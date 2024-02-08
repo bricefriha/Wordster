@@ -103,11 +103,11 @@ namespace Wordster.ViewModels
                 RemoveLetter(Convert.ToInt16(pos));
             });
 
-            _checkWordCommand = new Command(() =>
+            _checkWordCommand = new Command(async () =>
             {
-                if (!ValidateAttempt())
+                if (!(await ValidateAttempt()))
                 {
-                    CurrentApp.MainPage.DisplayAlert("Error", "The word should contain 5 characters.", "K bro");
+                    await CurrentApp.MainPage.DisplayAlert("Error", "Please enter a correct word", "OK pal!");
                     return;
                 }
 
@@ -124,11 +124,14 @@ namespace Wordster.ViewModels
         /// Determine if the word is valid
         /// </summary>
         /// <returns>true: valid word | false: word not valid</returns>
-        private bool ValidateAttempt()
+        private async Task<bool> ValidateAttempt()
         {
+            string word = string.Join("",Slots[_currentLine].Letters.Select(e => e.Value)).ToLower();
             // Test the length
             bool isCorrectLength = !Slots[_currentLine].Letters.Any(l => string.IsNullOrEmpty(l.Value));
-            return isCorrectLength;
+            // Check if the word exist
+            bool doesExist = await CurrentApp.DataFetcher.CheckWord(word);
+            return isCorrectLength && doesExist;
         }
 
         /// <summary>
@@ -227,7 +230,10 @@ namespace Wordster.ViewModels
                 if (++_currentLine == slotCount)
                 DisplayFailPopup();
         }
-
+        /// <summary>
+        /// Check whether or not the word is found
+        /// </summary>
+        /// <returns></returns>
         private bool CheckIfWordFound()
         {
             bool result = true;

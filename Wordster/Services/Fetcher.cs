@@ -4,17 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wordster.Models.http.Word;
 
 namespace Wordster.Services
 {
     public class Fetcher
     {
-        private const string HeokuApiHost = "random-word-api.herokuapp.com";
-        private readonly Service _wsHerokuApp;
+        private const string _heokuApiHost = "random-word-api.herokuapp.com";
+        private const string _datamuseApiHost = "api.datamuse.com";
+        private readonly Service _wsHerokuApi;
+        private readonly Service _wsDatamuseApi;
 
         public Fetcher() 
         {
-            _wsHerokuApp = new Service(HeokuApiHost, sslCertificate: true) ;
+            _wsHerokuApi = new Service(_heokuApiHost, sslCertificate: true) ;
+            _wsDatamuseApi = new Service(_datamuseApiHost, sslCertificate: true) ;
         }
         /// <summary>
         /// Returns a random word using parameters given
@@ -27,7 +31,22 @@ namespace Wordster.Services
             // Define
             string controller = $"word?length={length}&lang={lang}";
             // Process
-            return (await _wsHerokuApp.Get<string[]>(controller))[0];
+            return (await _wsHerokuApi.Get<string[]>(controller))[0];
+
+        }
+        /// <summary>
+        /// Check if a word exists
+        /// </summary>
+        /// <param name="word">word we want to check</param>
+        /// <returns>true: exist | false: doesn't</returns>
+        public async Task<bool> CheckWord(string word)
+        {
+            // Define
+            string controller = $"words?ml={word}";
+            // Process
+            var relatedWords = await _wsDatamuseApi.Get<List<RelatedWord>>(controller);
+
+            return relatedWords.Count > 0;
 
         }
     }
