@@ -23,8 +23,7 @@
             <RoundRectangle CornerRadius="40"/>
         </Border.StrokeShape>
 
-        <VerticalStackLayout 
-                             VerticalOptions="Center" 
+        <VerticalStackLayout VerticalOptions="Center" 
                              HorizontalOptions="Center"
                              Spacing="10">
             <Label Text="Yaaay you got it right!"

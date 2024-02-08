@@ -105,6 +105,12 @@ namespace Wordster.ViewModels
 
             _checkWordCommand = new Command(() =>
             {
+                if (!ValidateAttempt())
+                {
+                    CurrentApp.MainPage.DisplayAlert("Error", "The word should contain 5 characters.", "K bro");
+                    return;
+                }
+
                 CheckTheCurrentWord();
 
             });
@@ -113,6 +119,16 @@ namespace Wordster.ViewModels
                 DisplayGiveUpPopup();
             });
             _retryAction = () => GenerateNewGame();
+        }
+        /// <summary>
+        /// Determine if the word is valid
+        /// </summary>
+        /// <returns>true: valid word | false: word not valid</returns>
+        private bool ValidateAttempt()
+        {
+            // Test the length
+            bool isCorrectLength = !Slots[_currentLine].Letters.Any(l => string.IsNullOrEmpty(l.Value));
+            return isCorrectLength;
         }
 
         /// <summary>
