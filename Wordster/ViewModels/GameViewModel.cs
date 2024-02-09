@@ -1,5 +1,6 @@
 ﻿
 using CommunityToolkit.Maui.Views;
+using Microsoft.Maui.Controls;
 using Mopups.Services;
 using MvvmHelpers;
 using System;
@@ -108,6 +109,9 @@ namespace Wordster.ViewModels
                 if (!(await ValidateAttempt()))
                 {
                     await CurrentApp.MainPage.DisplayAlert("Error", "Please enter a correct word", "OK pal!");
+
+                    // Reset the current line
+                    ClearCurrentLine();
                     return;
                 }
 
@@ -119,6 +123,22 @@ namespace Wordster.ViewModels
                 DisplayGiveUpPopup();
             });
             _retryAction = () => GenerateNewGame();
+        }
+        /// <summary>
+        /// Clear all the slots of the line being played
+        /// </summary>
+        private void ClearCurrentLine()
+        {
+            List<Letter> currentLineLetters =  Slots[_currentLine].Letters.ToList();
+            
+            for (int i = 0; i < currentLineLetters.Count; ++i)
+                Slots[_currentLine].Letters[i] = new Letter
+                {
+                    Index = i,
+                    BackgroundColour = _emptyColour,
+                    Elevation = 0,
+                    Value = ""
+                };
         }
         /// <summary>
         /// Determine if the word is valid
