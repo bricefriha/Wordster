@@ -129,7 +129,7 @@ namespace Wordster.ViewModels
         /// </summary>
         private void ClearCurrentLine()
         {
-            List<Letter> currentLineLetters =  Slots[_currentLine].Letters.ToList();
+            List<Letter> currentLineLetters =  [.. Slots[_currentLine].Letters];
             
             for (int i = 0; i < currentLineLetters.Count; ++i)
                 Slots[_currentLine].Letters[i] = new Letter
@@ -280,28 +280,32 @@ namespace Wordster.ViewModels
                 //
                 // Get the value of the slot
                 string value = letters[i].Value;
-                // Get the value on the keyboard
-                Letter keyBoardValue = Keys.First(key => key.Value.ToUpper() == value);
-                //
-                // Check if the character exist in the word
-                if (Word.Contains(value.ToLower()))
+                if (!string.IsNullOrEmpty(value))
                 {
-                    // Indicate the valid result on the line
-                    letters[i].BackgroundColour = _almostValidColour;
+                    // Get the value on the keyboard
+                    Letter keyBoardValue = Keys.First(key => key.Value.Equals(value, StringComparison.CurrentCultureIgnoreCase));
+                    //
+                    // Check if the character exist in the word
+                    if (Word.Contains(value, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        // Indicate the valid result on the line
+                        letters[i].BackgroundColour = _almostValidColour;
 
-                    // Indicate the valid result on the keyboard
-                    keyBoardValue.BackgroundColour = _almostValidColour;
+                        // Indicate the valid result on the keyboard
+                        keyBoardValue.BackgroundColour = _almostValidColour;
+                    }
+                    else
+                    {
+                        letters[i].BackgroundColour = _emptyColour;
+                        keyBoardValue.BackgroundColour = _emptyColour;
+                    }
+                    //
+                    // Check if the character is at the right place
+                    if (letters[i].Value.ToLower() == Word[i].ToString())
+                        // Indicate the exactly valid result on the line
+                        letters[i].BackgroundColour = _validColour;
+
                 }
-                else
-                {
-                    letters[i].BackgroundColour = _emptyColour;
-                    keyBoardValue.BackgroundColour = _emptyColour;
-                }
-                //
-                // Check if the character is at the right place
-                if (letters[i].Value.ToLower() == Word[i].ToString())
-                    // Indicate the exactly valid result on the line
-                    letters[i].BackgroundColour = _validColour;
             }
         }
 
