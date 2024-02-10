@@ -106,6 +106,12 @@ namespace Wordster.ViewModels
 
             _checkWordCommand = new Command(async () =>
             {
+
+                // Cancel the action if the current line is empty
+                if (IsCurrentLineEmpty())
+                    return;
+
+                // Validate the attempt
                 if (!(await ValidateAttempt()))
                 {
                     await CurrentApp.MainPage.DisplayAlert("Error", "Please enter a correct word", "OK pal!");
@@ -139,6 +145,20 @@ namespace Wordster.ViewModels
                     Elevation = 0,
                     Value = ""
                 };
+        }
+        /// <summary>
+        /// Check wether or not the entire first line is empty. NOTE: we assume that if the first letter is 
+        /// </summary>
+        /// <returns>true if empty</returns>
+        private bool IsCurrentLineEmpty()
+        {
+            // Get the letters on the current line
+            List<Letter> currentLineLetters = [.. Slots[_currentLine].Letters];
+
+            // NOTE: we assume that if the first letter is empty the entire line is too
+            // since there is no way of filling up a slot while the first slot is also empty
+            return string.IsNullOrEmpty(currentLineLetters[0]?.Value);
+
         }
         /// <summary>
         /// Determine if the word is valid
