@@ -121,7 +121,7 @@
 
             </NeoButton>
         </Grid>
-        <NeoButton BackgroundColor="#e3edf7"
+        <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
                    HorizontalOptions="Center"
                    Elevation=".25"
                    Margin="80,0"
@@ -132,7 +132,7 @@
 
             <Grid>
                 <Label Text="Quick game"
-                       TextColor="Black"
+                       TextColor="{StaticResource PrimaryDark}"
                        FontSize="20"
                        FontFamily="MouseMemoirs-Regular"
                        VerticalOptions="Center"

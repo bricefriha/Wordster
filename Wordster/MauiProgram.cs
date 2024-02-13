@@ -1,6 +1,7 @@
-﻿
-using Maui.NeoControls;
+﻿using Maui.NeoControls;
 using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
+using Mopups.Hosting;
 
 namespace Wordster
 {
@@ -9,22 +10,19 @@ namespace Wordster
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .UseNeoControls()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("ComicShark.otf", "ComicShark");
-                    fonts.AddFont("SonicComics.ttf", "SonicComics");
-                    fonts.AddFont("MouseMemoirs-Regular.ttf", "MouseMemoirs-Regular");
-                });
-
+            builder.UseMauiApp<App>()
+                   .ConfigureMopups()
+                   .UseNeoControls().ConfigureFonts(fonts =>
+                   {
+                       fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                       fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                       fonts.AddFont("ComicShark.otf", "ComicShark");
+                       fonts.AddFont("SonicComics.ttf", "SonicComics");
+                       fonts.AddFont("MouseMemoirs-Regular.ttf", "MouseMemoirs-Regular");
+                   }).UseMauiCommunityToolkit();
 #if DEBUG
-		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
-
             return builder.Build();
         }
     }

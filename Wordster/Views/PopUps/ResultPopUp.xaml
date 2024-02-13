@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
+                x:Class="Wordster.Views.PopUps.ResultPopUp"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    
+    <mopups:PopupPage.Animation>
+        <mopupsanim:ScaleAnimation
+            DurationIn="700"
+            EasingIn="BounceOut"
+            PositionIn="Top"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7" />
+    </mopups:PopupPage.Animation>
+    <Border WidthRequest="300" HeightRequest="300"
+            BackgroundColor="{StaticResource DefaultButtonBrush}"
+            HorizontalOptions="Center">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="40"/>
+        </Border.StrokeShape>
+
+        <VerticalStackLayout 
+                             VerticalOptions="Center" 
+                             HorizontalOptions="Center"
+                             Spacing="10">
+            <Label Text="Yaaay you got it right!"
+                   TextColor="{StaticResource PrimaryDark}"
+                   VerticalOptions="Center" 
+                           FontFamily="MouseMemoirs-Regular"
+                   FontAttributes="Bold"
+                   Margin="0,10"
+                   HorizontalOptions="Center"
+                   FontSize="20" >
+                <Label.Triggers>
+                    <DataTrigger Binding="{Binding Guessed}"
+                                 TargetType="Label"
+                                 Value="True">
+                        <Setter Property="Text" Value="Yaaay you got it right!" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Guessed}"
+                                 TargetType="Label"
+                                 Value="False">
+                        <Setter Property="Text" Value="Sorry you couldn't find it" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Label Text="The word was:"
+                   TextColor="{StaticResource PrimaryDark}"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   FontSize="15" />
+            <Frame BackgroundColor="{StaticResource PrimaryDark}"
+                   HeightRequest="40"
+                   Padding="1"
+                   WidthRequest="80"
+                   >
+                <Frame.Triggers>
+                    <DataTrigger Binding="{Binding Guessed}"
+                                 TargetType="Frame"
+                                 Value="True">
+                        <Setter Property="BackgroundColor" Value="{StaticResource NailedButtonBrush}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Guessed}"
+                                 TargetType="Frame"
+                                 Value="False">
+                        <Setter Property="BackgroundColor" Value="{StaticResource FailButtonBrush}" />
+                    </DataTrigger>
+                </Frame.Triggers>
+                <Label Text="{Binding WordResult}"
+                       TextColor="{StaticResource DefaultButtonBrush}"
+                       VerticalOptions="Center" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="15" />
+            </Frame>
+            <HorizontalStackLayout >
+                <NeoButton BackgroundColor="{StaticResource DefaultButtonBrush}"
+                           Style="{StaticResource TileButtonPopup}"
+                           Clicked="BackButton_Clicked">
+
+                    <Grid>
+                        <Label Text="Back"
+                               TextColor="{StaticResource PrimaryDark}"
+                               FontSize="20"
+                               FontFamily="MouseMemoirs-Regular"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               />
+                    </Grid>
+
+                </NeoButton>
+                <NeoButton BackgroundColor="{StaticResource PrimaryDark}"
+                           Style="{StaticResource TileButtonPopup}"
+                           Clicked="RetryButton_Clicked">
+                    
+
+                    <Grid>
+                        <Label Text="Try again"
+                               TextColor="{StaticResource DefaultButtonBrush}"
+                               FontSize="20"
+                               FontFamily="MouseMemoirs-Regular"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                    </Grid>
+
+                </NeoButton>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Border>
+</mopups:PopupPage>

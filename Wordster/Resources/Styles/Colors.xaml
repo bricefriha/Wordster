@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Color x:Key="Primary">#5891D7</Color>
+    <Color x:Key="PrimaryDark">#233A56</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
     <Color x:Key="Tertiary">#8fce00</Color>
     <Color x:Key="White">White</Color>
@@ -47,6 +48,7 @@
     <Color x:Key="DarkButtonBrush">#9EA5AC</Color>
     <Color x:Key="AlmostRightButtonBrush">#A7CBF6</Color>
     <Color x:Key="NailedButtonBrush">#8fce00</Color>
+    <Color x:Key="FailButtonBrush">#A52A2A</Color>
 
 
 </ResourceDictionary>
