@@ -50,6 +50,9 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\ComicShark.otf" />
+	  <None Remove="Resources\Fonts\Font_Awesome_6_Brands-Regular-400.otf" />
+	  <None Remove="Resources\Fonts\Font_Awesome_6_Free-Regular-400.otf" />
+	  <None Remove="Resources\Fonts\Font_Awesome_6_Free-Solid-900.otf" />
 	  <None Remove="Resources\Fonts\MouseMemoirs-Regular.ttf" />
 	  <None Remove="Resources\Fonts\SonicComics.ttf" />
 	</ItemGroup>
