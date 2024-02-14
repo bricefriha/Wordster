@@ -50,12 +50,16 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\ComicShark.otf" />
+	  <None Remove="Resources\Fonts\Font_Awesome_6_Brands-Regular-400.otf" />
+	  <None Remove="Resources\Fonts\Font_Awesome_6_Free-Regular-400.otf" />
+	  <None Remove="Resources\Fonts\Font_Awesome_6_Free-Solid-900.otf" />
 	  <None Remove="Resources\Fonts\MouseMemoirs-Regular.ttf" />
 	  <None Remove="Resources\Fonts\SonicComics.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+		<PackageReference Include="Custard" Version="0.3.3-rc" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Mopups" Version="1.3.0" />
 		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
@@ -98,11 +102,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.6" />
+	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.7" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.6" />
+	  <PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Tools\Utilities\" />
 	</ItemGroup>
 
 </Project>

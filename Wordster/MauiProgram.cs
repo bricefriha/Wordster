@@ -17,6 +17,9 @@ namespace Wordster
                        fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                        fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                        fonts.AddFont("ComicShark.otf", "ComicShark");
+                       fonts.AddFont("Font_Awesome_6_Brands-Regular-400.otf", "FaBrands");
+                       fonts.AddFont("Font_Awesome_6_Free-Regular-400.otf", "FaRegular");
+                       fonts.AddFont("Font_Awesome_6_Free-Solid-900.otf", "FaSolid");
                        fonts.AddFont("SonicComics.ttf", "SonicComics");
                        fonts.AddFont("MouseMemoirs-Regular.ttf", "MouseMemoirs-Regular");
                    }).UseMauiCommunityToolkit();
