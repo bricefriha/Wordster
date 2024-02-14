@@ -1,6 +1,5 @@
 ﻿using Android.Health.Connect.DataTypes.Units;
 using CustardApi.Objects;
-using Java.Lang;
 using System;
 using System.Collections.Generic;
 using System.Linq;
