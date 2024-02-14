@@ -1,4 +1,6 @@
-﻿using CustardApi.Objects;
+﻿using Android.Health.Connect.DataTypes.Units;
+using CustardApi.Objects;
+using Java.Lang;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +31,14 @@ namespace Wordster.Services
         public async Task<string> GetRandomWord(int length, string lang = "en")
         {
             // Define
-            string controller = $"word?length={length}&lang={lang}";
+            string wordController = "word";
+            Dictionary<string, string> wordParameters = new() 
+            {
+                {nameof(length), length.ToString() },
+                {nameof(lang), lang },
+            };
             // Process
-            return (await _wsHerokuApi.Get<string[]>(controller))[0];
+            return (await _wsHerokuApi.Get<string[]>(wordController, parameters: wordParameters))[0];
 
         }
         /// <summary>
@@ -42,9 +49,13 @@ namespace Wordster.Services
         public async Task<bool> CheckWord(string word)
         {
             // Define
-            string controller = $"words?ml={word}";
+            string wordController = $"words?ml={word}";
+            Dictionary<string, string> wordParameters = new()
+            {
+                {nameof(word), word },
+            };
             // Process
-            var relatedWords = await _wsDatamuseApi.Get<List<RelatedWord>>(controller);
+            var relatedWords = await _wsDatamuseApi.Get<List<RelatedWord>>(wordController, wordParameters);
 
             return relatedWords.Count > 0;
 
