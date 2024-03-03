@@ -1,5 +1,6 @@
 ﻿
 using CommunityToolkit.Maui.Views;
+using Microsoft.Maui.Controls;
 using Mopups.Services;
 using MvvmHelpers;
 using System;
@@ -84,7 +85,7 @@ namespace Wordster.ViewModels
         private Color _filledColour ;
         private Color _almostValidColour;
         private Color _validColour;
-        private string validWord = "fault";
+        public string Word { private get; set; }
 
         public GameViewModel()
         {
@@ -103,8 +104,23 @@ namespace Wordster.ViewModels
                 RemoveLetter(Convert.ToInt16(pos));
             });
 
-            _checkWordCommand = new Command(() =>
+            _checkWordCommand = new Command(async () =>
             {
+
+                // Cancel the action if the current line is empty
+                if (IsCurrentLineEmpty())
+                    return;
+
+                // Validate the attempt
+                if (!(await ValidateAttempt()))
+                {
+                    await CurrentApp.MainPage.DisplayAlert("Error", "Please enter a correct word", "OK pal!");
+
+                    // Reset the current line
+                    ClearCurrentLine();
+                    return;
+                }
+
                 CheckTheCurrentWord();
 
             });
@@ -114,12 +130,58 @@ namespace Wordster.ViewModels
             });
             _retryAction = () => GenerateNewGame();
         }
+        /// <summary>
+        /// Clear all the slots of the line being played
+        /// </summary>
+        private void ClearCurrentLine()
+        {
+            List<Letter> currentLineLetters =  [.. Slots[_currentLine].Letters];
+            
+            for (int i = 0; i < currentLineLetters.Count; ++i)
+                Slots[_currentLine].Letters[i] = new Letter
+                {
+                    Index = i,
+                    BackgroundColour = _emptyColour,
+                    Elevation = 0,
+                    Value = ""
+                };
+        }
+        /// <summary>
+        /// Check wether or not the entire first line is empty. NOTE: we assume that if the first letter is 
+        /// </summary>
+        /// <returns>true if empty</returns>
+        private bool IsCurrentLineEmpty()
+        {
+            // Get the letters on the current line
+            List<Letter> currentLineLetters = [.. Slots[_currentLine].Letters];
+
+            // NOTE: we assume that if the first letter is empty the entire line is too
+            // since there is no way of filling up a slot while the first slot is also empty
+            return string.IsNullOrEmpty(currentLineLetters[0]?.Value);
+
+        }
+        /// <summary>
+        /// Determine if the word is valid
+        /// </summary>
+        /// <returns>true: valid word | false: word not valid</returns>
+        private async Task<bool> ValidateAttempt()
+        {
+            string word = string.Join("",Slots[_currentLine].Letters.Select(e => e.Value)).ToLower();
+            // Test the length
+            bool isCorrectLength = !Slots[_currentLine].Letters.Any(l => string.IsNullOrEmpty(l.Value));
+            // Check if the word exist
+            bool doesExist = await CurrentApp.DataFetcher.CheckWord(word);
+            return isCorrectLength && doesExist;
+        }
 
         /// <summary>
         /// Initiate data the gameplay need
         /// </summary>
         private void Initialisation()
         {
+            // Generate a word
+            GeneateNewWord();
+
             // Set the colours
             GetResourceColours();
 
@@ -129,7 +191,10 @@ namespace Wordster.ViewModels
             // Set data of the keyboard
             GenerateKeys();
         }
-
+        private async void GeneateNewWord()
+        {
+            Word = await CurrentApp.DataFetcher.GetRandomWord(characterCountMax);
+        }
         /// <summary>
         /// Prepare or reset the board
         /// </summary>
@@ -183,9 +248,7 @@ namespace Wordster.ViewModels
         private void GenerateNewGame()
         {
             // Genearate a new word
-            //
-            // Code for it
-            // 
+            GeneateNewWord();
 
             // Reset the Keyboard
             ResetKeyboard();
@@ -207,7 +270,10 @@ namespace Wordster.ViewModels
                 if (++_currentLine == slotCount)
                 DisplayFailPopup();
         }
-
+        /// <summary>
+        /// Check whether or not the word is found
+        /// </summary>
+        /// <returns></returns>
         private bool CheckIfWordFound()
         {
             bool result = true;
@@ -234,28 +300,32 @@ namespace Wordster.ViewModels
                 //
                 // Get the value of the slot
                 string value = letters[i].Value;
-                // Get the value on the keyboard
-                Letter keyBoardValue = Keys.First(key => key.Value.ToUpper() == value);
-                //
-                // Check if the character exist in the word
-                if (validWord.Contains(value.ToLower()))
+                if (!string.IsNullOrEmpty(value))
                 {
-                    // Indicate the valid result on the line
-                    letters[i].BackgroundColour = _almostValidColour;
+                    // Get the value on the keyboard
+                    Letter keyBoardValue = Keys.First(key => key.Value.Equals(value, StringComparison.CurrentCultureIgnoreCase));
+                    //
+                    // Check if the character exist in the word
+                    if (Word.Contains(value, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        // Indicate the valid result on the line
+                        letters[i].BackgroundColour = _almostValidColour;
 
-                    // Indicate the valid result on the keyboard
-                    keyBoardValue.BackgroundColour = _almostValidColour;
+                        // Indicate the valid result on the keyboard
+                        keyBoardValue.BackgroundColour = _almostValidColour;
+                    }
+                    else
+                    {
+                        letters[i].BackgroundColour = _emptyColour;
+                        keyBoardValue.BackgroundColour = _emptyColour;
+                    }
+                    //
+                    // Check if the character is at the right place
+                    if (letters[i].Value.ToLower() == Word[i].ToString())
+                        // Indicate the exactly valid result on the line
+                        letters[i].BackgroundColour = _validColour;
+
                 }
-                else
-                {
-                    letters[i].BackgroundColour = _emptyColour;
-                    keyBoardValue.BackgroundColour = _emptyColour;
-                }
-                //
-                // Check if the character is at the right place
-                if (letters[i].Value.ToLower() == validWord[i].ToString())
-                    // Indicate the exactly valid result on the line
-                    letters[i].BackgroundColour = _validColour;
             }
         }
 
@@ -364,21 +434,21 @@ namespace Wordster.ViewModels
         /// </summary>
         public void DisplaySuccessPopup()
         {
-            MopupService.Instance.PushAsync(new ResultPopUp(validWord, true, _retryAction));
+            MopupService.Instance.PushAsync(new ResultPopUp(Word, true, _retryAction));
         }
         /// <summary>
         /// Show the popup in case of a failure
         /// </summary>
         public void DisplayFailPopup()
         {
-            MopupService.Instance.PushAsync(new ResultPopUp(validWord, false, _retryAction));
+            MopupService.Instance.PushAsync(new ResultPopUp(Word, false, _retryAction));
         }
         /// <summary>
         /// Show a pop up when giving up that display the word
         /// </summary>
         public void DisplayGiveUpPopup()
         {
-            MopupService.Instance.PushAsync(new GiveUpPopUp(validWord, _retryAction));
+            MopupService.Instance.PushAsync(new GiveUpPopUp(Word, _retryAction));
         }
     }
 }

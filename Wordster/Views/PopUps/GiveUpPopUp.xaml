@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
-             xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
+                xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+                xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
                 x:Class="Wordster.Views.PopUps.GiveUpPopUp"
-               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+                CloseWhenBackgroundIsClicked="False"
+                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     
     <mopups:PopupPage.Animation>
         <mopupsanim:ScaleAnimation

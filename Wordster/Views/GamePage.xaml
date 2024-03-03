@@ -282,7 +282,8 @@
                            CommandParameter="-1"
                            Style="{StaticResource ActionGameButton}">
                     <Grid>
-                        <Label Text="Back"
+                        <Label Text="&#xf55a;"
+                               FontFamily="FaSolid"
                                Style="{StaticResource TileText}"/>
                     </Grid>
 
@@ -368,7 +369,8 @@
                            Style="{StaticResource ActionGameButton}">
 
                     <Grid>
-                        <Label Text="Check"
+                        <Label Text="&#xf00c;"
+                               FontFamily="FaSolid"
                                TextColor="{StaticResource DefaultButtonBrush}"
                                Style="{StaticResource TileText}"/>
                     </Grid>
